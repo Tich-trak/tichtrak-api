@@ -2,11 +2,17 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Support\ItemNotFoundException;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
-class Handler extends ExceptionHandler
-{
+class Handler extends ExceptionHandler {
     /**
      * The list of the inputs that are never flashed to the session on validation exceptions.
      *
@@ -18,13 +24,62 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+
     /**
      * Register the exception handling callbacks for the application.
      */
-    public function register(): void
-    {
+    public function register(): void {
         $this->reportable(function (Throwable $e) {
             //
+        });
+
+        $this->renderable(function (ItemNotFoundException $e, $request) {
+            return response()->json([
+                'message' => 'Data not found', 'success' => false,
+                'statusCode' => $e->getStatusCode(),
+            ], 404);
+        });
+
+        $this->renderable(function (ModelNotFoundException $e, $request) {
+            return response()->json([
+                'message' => 'Data not found', 'success' => false,
+                'statusCode' => $e->getStatusCode(),
+            ], 404);
+        });
+
+        $this->renderable(function (AuthenticationException $e, $request) {
+            return response()->json([
+                'message' => 'Unauthenticated user', 'success' => false,
+                'statusCode' => $e->getStatusCode(),
+            ], 404);
+        });
+
+        $this->renderable(function (NotFoundHttpException $e, $request) {
+            return response()->json([
+                'message' => 'Http route not found', 'success' => false,
+                'statusCode' => $e->getStatusCode(),
+            ], 404);
+        });
+
+        $this->renderable(function (ValidationException $e, $request) {
+            return response()->json([
+                'message' => 'UnprocessableEntity', 'success' => false,
+                'errors' => [], 'statusCode' => $e->getStatusCode(),
+            ], 422);
+        });
+
+        $this->renderable(function (MethodNotAllowedHttpException $e, $request) {
+            return response()->json([
+                'message' => 'Incorrect Http Verb', 'success' => false,
+                'statusCode' => $e->getStatusCode(),
+            ], 405);
+        });
+
+        $this->renderable(function (AccessDeniedHttpException $e, $request) {
+            return response()->json([
+                'message' => 'Unauthorized user', 'success' => false,
+                'statusCode' => $e->getStatusCode(),
+            ], 403);
         });
     }
 }
