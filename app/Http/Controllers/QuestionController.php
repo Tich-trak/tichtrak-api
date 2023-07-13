@@ -6,45 +6,39 @@ use App\Models\Question;
 use App\Http\Requests\StoreQuestionRequest;
 use App\Http\Requests\UpdateQuestionRequest;
 
-class QuestionController extends Controller
-{
+class QuestionController extends BaseController {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreQuestionRequest $request)
-    {
+    public function store(StoreQuestionRequest $request) {
         //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Question $question)
-    {
+    public function show(Question $question) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateQuestionRequest $request, Question $question)
-    {
+    public function update(UpdateQuestionRequest $request, Question $question) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Question $question)
-    {
+    public function destroy(Question $question) {
         //
     }
 }
