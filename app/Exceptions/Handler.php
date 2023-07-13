@@ -35,49 +35,49 @@ class Handler extends ExceptionHandler {
 
         $this->renderable(function (ItemNotFoundException $e, $request) {
             return response()->json([
-                'message' => 'Data not found', 'success' => false,
+                'error' => 'Data not found', 'success' => false,
                 'statusCode' => $e->getStatusCode(),
             ], 404);
         });
 
         $this->renderable(function (ModelNotFoundException $e, $request) {
             return response()->json([
-                'message' => 'Data not found', 'success' => false,
+                'error' => 'Data not found', 'success' => false,
                 'statusCode' => $e->getStatusCode(),
             ], 404);
         });
 
         $this->renderable(function (AuthenticationException $e, $request) {
             return response()->json([
-                'message' => 'Unauthenticated user', 'success' => false,
+                'error' => 'Unauthenticated user', 'success' => false,
                 'statusCode' => $e->getStatusCode(),
             ], 404);
         });
 
         $this->renderable(function (NotFoundHttpException $e, $request) {
             return response()->json([
-                'message' => 'Http route not found', 'success' => false,
+                'error' => 'Http route not found', 'success' => false,
                 'statusCode' => $e->getStatusCode(),
             ], 404);
         });
 
         $this->renderable(function (ValidationException $e, $request) {
             return response()->json([
-                'message' => 'UnprocessableEntity', 'success' => false,
+                'error' => 'UnprocessableEntity', 'success' => false,
                 'errors' => [], 'statusCode' => $e->getStatusCode(),
             ], 422);
         });
 
         $this->renderable(function (MethodNotAllowedHttpException $e, $request) {
             return response()->json([
-                'message' => 'Incorrect Http Verb', 'success' => false,
+                'error' => 'Incorrect Http Verb', 'success' => false,
                 'statusCode' => $e->getStatusCode(),
             ], 405);
         });
 
         $this->renderable(function (AccessDeniedHttpException $e, $request) {
             return response()->json([
-                'message' => 'Unauthorized user', 'success' => false,
+                'error' => 'Unauthorized user', 'success' => false,
                 'statusCode' => $e->getStatusCode(),
             ], 403);
         });

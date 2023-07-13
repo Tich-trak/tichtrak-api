@@ -6,45 +6,39 @@ use App\Models\Institution;
 use App\Http\Requests\StoreInstitutionRequest;
 use App\Http\Requests\UpdateInstitutionRequest;
 
-class InstitutionController extends Controller
-{
+class InstitutionController extends BaseController {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInstitutionRequest $request)
-    {
+    public function store(StoreInstitutionRequest $request) {
         //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Institution $institution)
-    {
+    public function show(Institution $institution) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInstitutionRequest $request, Institution $institution)
-    {
+    public function update(UpdateInstitutionRequest $request, Institution $institution) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Institution $institution)
-    {
+    public function destroy(Institution $institution) {
         //
     }
 }

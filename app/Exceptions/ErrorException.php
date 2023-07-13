@@ -23,7 +23,7 @@ class ErrorException extends Exception {
 
     public function render(Request $request): JsonResponse {
         return new JsonResponse([
-            "message" => $this->getMessage(),
+            "error" => $this->getMessage(),
             "success" => false,
             "statusCode" => $this->code,
         ], $this->code);

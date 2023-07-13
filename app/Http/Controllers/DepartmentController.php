@@ -6,45 +6,39 @@ use App\Models\Department;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
 
-class DepartmentController extends Controller
-{
+class DepartmentController extends BaseController {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDepartmentRequest $request)
-    {
+    public function store(StoreDepartmentRequest $request) {
         //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Department $department)
-    {
+    public function show(Department $department) {
         //
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDepartmentRequest $request, Department $department)
-    {
+    public function update(UpdateDepartmentRequest $request, Department $department) {
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Department $department)
-    {
+    public function destroy(Department $department) {
         //
     }
 }
