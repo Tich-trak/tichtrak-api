@@ -11,8 +11,6 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('programmes', function (Blueprint $table) {
             $table->ulid('id');
-            $table->foreignId('institution_id');
-            $table->foreignId('faculty_id');
             $table->foreignId('department_id');
             $table->string('name');
             $table->string('goal')->nullable();

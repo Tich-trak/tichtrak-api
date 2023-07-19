@@ -12,7 +12,6 @@ return new class extends Migration {
         Schema::create('departments', function (Blueprint $table) {
             $table->ulid('id');
             $table->foreignId('institution_id');
-            $table->foreignId('faculty_id');
             $table->string('name');
             $table->string('goal')->nullable();
             $table->boolean('is_active')->default(true);
