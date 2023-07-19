@@ -11,9 +11,6 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('courses', function (Blueprint $table) {
             $table->ulid('id');
-            $table->foreignId('institution_id');
-            $table->foreignId('level_id');
-            $table->foreignId('faculty_id');
             $table->foreignId('department_id');
             $table->string('name');
             $table->integer('code');
