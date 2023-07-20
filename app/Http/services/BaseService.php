@@ -27,8 +27,8 @@ class BaseService {
         return $data;
     }
 
-    public function paginate() {
-        $data = $this->repository->paginate();
+    public function paginate($limit = 15) {
+        $data = $this->repository->paginate($limit);
         if (!$data) throw new ErrorException('unable to fetch ' . $this->name, 404);
 
         return $data;
@@ -48,16 +48,16 @@ class BaseService {
         return $data;
     }
 
-    public function update(int $key, array $payload) {
+    public function updateOne(int $key, array $payload) {
         $data = $this->repository->find($key);
-        if (!$data) throw new ErrorException('unable to update ' . $this->name, 404);
+        if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
 
         return $data->update($payload);
     }
 
-    public function delete(int $key) {
+    public function deleteOne(int $key) {
         $data = $this->repository->find($key);
-        if (!$data) throw new ErrorException('unable to delete ' . $this->name, 404);
+        if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
 
         return $data->delete();
     }
