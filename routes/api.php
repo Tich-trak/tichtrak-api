@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InstitutionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => 'v1/',], function () {
+    /*====================    auth    =============================*/
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('register', [AuthController::class, 'register']);
+    Route::get('verify/{verification_token}', [AuthController::class, 'verify']);
+    Route::get('resend_verification/{email}', [AuthController::class, 'resendVerification']);
+    Route::get('forgot_password/{email}', [AuthController::class, 'forgotPassword']);
+    Route::patch('reset_password/{reset_token}', [AuthController::class, 'resetPassword']);
+    Route::post('logout', [AuthController::class, 'logout']);
+
+
+    /*====================  Institutions   =============================*/
+    Route::apiResource('institutions', InstitutionController::class);
+
+    /*====================  Users   =============================*/
+    Route::apiResource('users', UserController::class);
+
+    /*====================  Payments   =============================*/
+    Route::apiResource('payments', PaymentController::class);
+
+    /*====================  Subscription   =============================*/
+    Route::apiResource('subscriptions', SubscriptionController::class);
 });
