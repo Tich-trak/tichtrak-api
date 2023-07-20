@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InstitutionAdmin extends Model {
     use HasFactory;
 
+
+    /**
+     * Get the user that owns the institution admin.
+     */
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
+
     /**
      * Get the institution that owns the admin.
      */
