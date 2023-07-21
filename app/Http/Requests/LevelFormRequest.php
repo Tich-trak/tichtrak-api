@@ -18,8 +18,20 @@ class LevelFormRequest extends FormRequest {
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array {
-        return [
-            //
-        ];
+        switch ($this->method()) {
+            case 'GET':
+            case 'DELETE': {
+                    return [];
+                }
+            case 'POST': {
+                    return [];
+                }
+            case 'PUT':
+            case 'PATCH': {
+                    return [];
+                }
+            default:
+                break;
+        }
     }
 }

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Poll;
-use App\Http\Requests\StorePollRequest;
-use App\Http\Requests\UpdatePollRequest;
+use App\Http\Requests\PollFormRequest;
 
 class PollController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class PollController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePollRequest $request) {
+    public function store(PollFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class PollController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePollRequest $request, Poll $poll) {
+    public function update(PollFormRequest $request, Poll $poll) {
         //
     }
 

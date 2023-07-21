@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Forum;
-use App\Http\Requests\StoreForumRequest;
-use App\Http\Requests\UpdateForumRequest;
+use App\Http\Requests\ForumFormRequest;
 
 class ForumController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class ForumController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreForumRequest $request) {
+    public function store(ForumFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class ForumController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateForumRequest $request, Forum $forum) {
+    public function update(ForumFormRequest $request, Forum $forum) {
         //
     }
 
