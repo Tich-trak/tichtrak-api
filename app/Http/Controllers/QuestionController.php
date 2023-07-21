@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
-use App\Http\Requests\StoreQuestionRequest;
-use App\Http\Requests\UpdateQuestionRequest;
+use App\Http\Requests\QuestionFormRequest;
 
 class QuestionController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class QuestionController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreQuestionRequest $request) {
+    public function store(QuestionFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class QuestionController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateQuestionRequest $request, Question $question) {
+    public function update(QuestionFormRequest $request, Question $question) {
         //
     }
 

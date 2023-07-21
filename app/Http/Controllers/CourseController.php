@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Http\Requests\StoreCourseRequest;
-use App\Http\Requests\UpdateCourseRequest;
+use App\Http\Requests\CourseFormRequest;
 
 class CourseController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class CourseController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCourseRequest $request) {
+    public function store(CourseFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class CourseController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCourseRequest $request, Course $course) {
+    public function update(CourseFormRequest $request, Course $course) {
         //
     }
 

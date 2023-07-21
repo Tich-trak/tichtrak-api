@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use App\Http\Requests\StoreDepartmentRequest;
-use App\Http\Requests\UpdateDepartmentRequest;
+use App\Http\Requests\DepartmentFormRequest;
 
 class DepartmentController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class DepartmentController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreDepartmentRequest $request) {
+    public function store(DepartmentFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class DepartmentController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDepartmentRequest $request, Department $department) {
+    public function update(DepartmentFormRequest $request, Department $department) {
         //
     }
 

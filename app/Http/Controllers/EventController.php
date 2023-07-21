@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Http\Requests\StoreEventRequest;
-use App\Http\Requests\UpdateEventRequest;
+use App\Http\Requests\EventFormRequest;
 
 class EventController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class EventController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreEventRequest $request) {
+    public function store(EventFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class EventController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateEventRequest $request, Event $event) {
+    public function update(EventFormRequest $request, Event $event) {
         //
     }
 

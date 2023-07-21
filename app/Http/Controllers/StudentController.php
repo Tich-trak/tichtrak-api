@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
+use App\Http\Requests\StudentFormRequest;
 
 class StudentController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class StudentController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreStudentRequest $request) {
+    public function store(StudentFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class StudentController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateStudentRequest $request, Student $student) {
+    public function update(StudentFormRequest $request, Student $student) {
         //
     }
 

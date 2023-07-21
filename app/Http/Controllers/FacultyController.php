@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Faculty;
-use App\Http\Requests\StoreFacultyRequest;
-use App\Http\Requests\UpdateFacultyRequest;
+use App\Http\Requests\FacultyFormRequest;
 
 class FacultyController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class FacultyController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFacultyRequest $request) {
+    public function store(FacultyFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class FacultyController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFacultyRequest $request, Faculty $faculty) {
+    public function update(FacultyFormRequest $request, Faculty $faculty) {
         //
     }
 

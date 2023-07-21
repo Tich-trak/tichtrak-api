@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\InstitutionAdmin;
-use App\Http\Requests\StoreInstitutionAdminRequest;
-use App\Http\Requests\UpdateInstitutionAdminRequest;
+use App\Http\Requests\InstitutionAdminFormRequest;
 
 class InstitutionAdminController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class InstitutionAdminController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInstitutionAdminRequest $request) {
+    public function store(InstitutionAdminFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class InstitutionAdminController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInstitutionAdminRequest $request, InstitutionAdmin $institutionAdmin) {
+    public function update(InstitutionAdminFormRequest $request, InstitutionAdmin $institutionAdmin) {
         //
     }
 

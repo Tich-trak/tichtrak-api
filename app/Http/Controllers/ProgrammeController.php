@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Programme;
-use App\Http\Requests\StoreProgrammeRequest;
-use App\Http\Requests\UpdateProgrammeRequest;
+use App\Http\Requests\ProgrammeFormRequest;
 
 class ProgrammeController extends BaseController {
     /**
@@ -17,7 +16,7 @@ class ProgrammeController extends BaseController {
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProgrammeRequest $request) {
+    public function store(ProgrammeFormRequest $request) {
         //
     }
 
@@ -31,7 +30,7 @@ class ProgrammeController extends BaseController {
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProgrammeRequest $request, Programme $programme) {
+    public function update(ProgrammeFormRequest $request, Programme $programme) {
         //
     }
 
