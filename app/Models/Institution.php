@@ -11,7 +11,7 @@ class Institution extends Model {
     use HasFactory;
 
     /**
-     * Get the comments for the blog post.
+     * Get the Admins for the institution.
      */
     public function institutionAdmins(): HasMany {
         return $this->hasMany(InstitutionAdmin::class);

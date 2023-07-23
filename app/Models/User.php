@@ -67,9 +67,30 @@ class User extends Authenticatable {
         );
     }
 
-    //TODO SET SUPER ADMIN METHOD
-    //TODO SET ADMIN METHOD
-    //TODO SET ROLE METHOD
+
+    /**
+     * Check if the user is a System Administrator
+     */
+    public function isSystemAdmin(): bool {
+        if ($this->role === RoleEnum::SuperAdmin) return true;
+        else return false;
+    }
+
+    /**
+     * Check if the user is an Administrator
+     */
+    public function isAdmin(): bool {
+        if ($this->role === RoleEnum::Admin)  return true;
+        else return false;
+    }
+
+    /**
+     * Check if user role is the role value provided
+     */
+    public function hasRole($role): bool {
+        if ($this->role === $role)  return true;
+        else return false;
+    }
 
     /**
      * Get the Details of an Institution Admin
