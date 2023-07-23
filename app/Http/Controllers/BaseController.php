@@ -25,7 +25,7 @@ class BaseController extends Controller {
     }
 
     /**
-     * General error response.
+     * General error response method.
      *
      * @return \Illuminate\Http\Response
      */

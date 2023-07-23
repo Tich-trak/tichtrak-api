@@ -24,8 +24,15 @@ abstract class BaseRepository extends Repository {
      * @return mixed
      */
 
+    public function updateOne($data, $query) {
+        try {
+            return tap($this->model::findWhere($query)->first())->update($data)->fresh();
+        } catch (\Exception $ex) {
+            return $ex;
+        }
+    }
 
-    public function updateEntityById($data, $id) {
+    public function updateById($data, $id) {
         try {
             return tap($this->model::where('id', $id)->first())->update($data)->fresh();
         } catch (\Exception $ex) {
@@ -33,7 +40,7 @@ abstract class BaseRepository extends Repository {
         }
     }
 
-    public function updateEntityByUuid($data, $uuid) {
+    public function updateByUuid($data, $uuid) {
         try {
             return tap($this->model::where('uuid', $uuid)->first())->update($data)->fresh();
         } catch (\Exception $ex) {

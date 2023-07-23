@@ -3,8 +3,11 @@
 namespace App\Http\Services;
 
 use App\Exceptions\ErrorException;
+use App\Http\Traits\UserDetailsTrait;
 
 class BaseService {
+    use UserDetailsTrait;
+
     protected $repository;
     protected string $name;
 
@@ -53,6 +56,10 @@ class BaseService {
         if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
 
         return $data->update($payload);
+    }
+
+    public function upsert(array $query, array $payload) {
+        return  $this->repository->updateOrCreate($query, $payload);
     }
 
     public function deleteOne(int $key) {
