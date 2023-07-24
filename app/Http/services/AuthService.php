@@ -2,24 +2,34 @@
 
 namespace App\Http\Services;
 
-use App\Exceptions\ErrorResponse;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+
+use App\Mail\WelcomeEmail;
+use App\Mail\VerificationEmail;
+use App\Mail\ResetPasswordEmail;
+
+use App\Http\Requests\LoginFormRequest;
+use App\Http\Requests\ResetPasswordFormRequest;
+use App\Http\Requests\UserFormRequest;
 
 class AuthService extends BaseService {
 
     public function __construct(
         private UserService $userService,
+        private StudentService $studentService,
+        private InstitutionAdminService $adminService,
         private PasswordService $passwordService,
     ) {
     }
 
-    public function register(array $payload) {
+    public function register(UserFormRequest $payload) {
     }
 
     public function verify(string $token) {
     }
 
-    public function login(array $payload) {
+    public function login(LoginFormRequest $payload) {
     }
 
     public function resendVerification(string $email) {
@@ -28,7 +38,7 @@ class AuthService extends BaseService {
     public function forgotPassword(string $email) {
     }
 
-    public function resetPassword($email, array $payload) {
+    public function resetPassword(ResetPasswordFormRequest $payload) {
     }
 
     public function logout() {

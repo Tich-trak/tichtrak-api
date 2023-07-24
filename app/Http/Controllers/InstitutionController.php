@@ -11,9 +11,8 @@ class InstitutionController extends BaseController {
 
 
     public function __construct(private InstitutionService $institutionService) {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
-
 
 
     /**
