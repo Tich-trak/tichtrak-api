@@ -12,12 +12,16 @@ return new class extends Migration {
         Schema::create('institutions', function (Blueprint $table) {
             $table->ulid('id');
             $table->string('name');
+            $table->string('alias');
             $table->string('email')->unique();
+            $table->string('logo_url')->nullable();
             $table->string('po_box');
             $table->string('type');
-            $table->string('address')->nullable();
+            $table->string('address');
+            $table->string('city');
             $table->foreignId('state_id')->nullable();
             $table->foreignId('country_id')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }

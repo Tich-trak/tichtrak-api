@@ -50,7 +50,7 @@ class Handler extends ExceptionHandler {
         $this->renderable(function (AuthenticationException $e, $request) {
             return response()->json([
                 'error' => 'Unauthenticated user', 'success' => false,
-                'statusCode' => $e->getStatusCode(),
+                'statusCode' => 401,
             ], 404);
         });
 
@@ -63,8 +63,8 @@ class Handler extends ExceptionHandler {
 
         $this->renderable(function (ValidationException $e, $request) {
             return response()->json([
-                'error' => 'UnprocessableEntity', 'success' => false,
-                'errors' => [], 'statusCode' => $e->getStatusCode(),
+                'error' => $e->errors(), 'success' => false,
+                'statusCode' => 422,
             ], 422);
         });
 

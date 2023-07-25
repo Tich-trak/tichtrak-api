@@ -80,7 +80,7 @@ class User extends Authenticatable {
      * Check if the user is an Administrator
      */
     public function isAdmin(): bool {
-        if ($this->role === RoleEnum::Admin)  return true;
+        if ($this->role === RoleEnum::Admin) return true;
         else return false;
     }
 
@@ -88,7 +88,7 @@ class User extends Authenticatable {
      * Check if user role is the role value provided
      */
     public function hasRole($role): bool {
-        if ($this->role === $role)  return true;
+        if ($this->role === $role) return true;
         else return false;
     }
 
