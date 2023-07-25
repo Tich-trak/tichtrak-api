@@ -14,14 +14,14 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 class Institution extends Model {
     use HasUlids, HasFactory, FilterQueryString;
 
-    protected $filters = ['id', 'type', 'email', 'is_active'];
-
     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
     protected $guarded = ['id'];
+
+    protected $filters = ['id', 'type', 'email', 'is_active', 'state_id', 'country_id'];
 
     /**
      * The attributes that should be cast.
