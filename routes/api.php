@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\InstitutionController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InstitutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1/',], function () {
+
     /*====================    auth    =============================*/
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
@@ -24,7 +25,6 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::get('forgot_password/{email}', [AuthController::class, 'forgotPassword']);
     Route::patch('reset_password/{reset_token}', [AuthController::class, 'resetPassword']);
     Route::post('logout', [AuthController::class, 'logout']);
-
 
     /*====================  Institutions   =============================*/
     Route::apiResource('institutions', InstitutionController::class);

@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler {
             return response()->json([
                 'error' => 'Unauthenticated user', 'success' => false,
                 'statusCode' => 401,
-            ], 404);
+            ], 401);
         });
 
         $this->renderable(function (NotFoundHttpException $e, $request) {

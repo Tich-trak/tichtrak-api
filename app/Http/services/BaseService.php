@@ -23,11 +23,6 @@ class BaseService {
         return $data;
     }
 
-    /**
-     * THIS FUNCTION ACCEPTS QUERY FILTER BY DEFAULT
-     * return mixed
-     */
-
     public function find() {
         return $this->repository->findAll();
     }
@@ -86,9 +81,6 @@ class BaseService {
     }
 
     public function deleteOne(array $query) {
-        $data = $this->repository->findWhere($query)->first();
-        if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
-
-        return $data->delete();
+        return $this->repository->deleteOne($query);
     }
 }
