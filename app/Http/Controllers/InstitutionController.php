@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Institution;
 use App\Http\Requests\InstitutionFormRequest;
 use App\Http\Resources\InstitutionResource;
 use App\Http\Services\InstitutionService;
@@ -43,21 +42,33 @@ class InstitutionController extends BaseController {
     /**
      * Display the specified resource.
      */
-    public function show(Institution $institution) {
-        //
+    public function show(string $id) {
+        $institution = $this->institutionService->findById($id);
+
+        return $this->jsonResponse($institution, 'institution fetched successfully');
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(InstitutionFormRequest $request, Institution $institution) {
-        //
+    public function update(InstitutionFormRequest $request, string $id) {
+        try {
+            $payload = $request->safe()->except('id');
+
+            $institution = $this->institutionService->updateById($id, $payload);
+
+            return $this->jsonResponse($institution, 'institution updated successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Institution $institution) {
-        //
+    public function destroy(string $id) {
+        $this->institutionService->deleteById($id);
+
+        return $this->jsonResponse(null, 'institution deleted successfully');
     }
 }

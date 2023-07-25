@@ -60,19 +60,33 @@ class BaseService {
         return $data;
     }
 
-    public function updateOne(int $key, array $payload) {
-        $data = $this->repository->find($key);
-        if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
+    public function updateById(string $key, array $payload) {
+        $data = $this->repository->updateById($payload, $key);
+        if (!$data) throw new ErrorException('unable to update ' . $this->name, 404);
 
-        return $data->update($payload);
+        return $data;
+    }
+
+    public function updateOne(array $query, array $payload) {
+        $data =  $this->repository->updateOne($payload, $query);
+        if (!$data) throw new ErrorException('unable to update ' . $this->name, 404);
+
+        return $data;
     }
 
     public function upsert(array $query, array $payload) {
-        return  $this->repository->updateOrCreate($query, $payload);
+        return $this->repository->updateOrCreate($query, $payload);
     }
 
-    public function deleteOne(int $key) {
+    public function deleteById(int $key) {
         $data = $this->repository->find($key);
+        if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
+
+        return $data->delete();
+    }
+
+    public function deleteOne(array $query) {
+        $data = $this->repository->findWhere($query)->first();
         if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
 
         return $data->delete();

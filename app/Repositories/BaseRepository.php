@@ -47,14 +47,6 @@ abstract class BaseRepository extends Repository {
         }
     }
 
-    public function updateByUuid($data, $uuid) {
-        try {
-            return tap($this->model::where('uuid', $uuid)->first())->update($data)->fresh();
-        } catch (\Exception $ex) {
-            return $ex;
-        }
-    }
-
     public function _delete($column, $value) {
         return $this->model->where($column, '=', $value)->delete();
     }
