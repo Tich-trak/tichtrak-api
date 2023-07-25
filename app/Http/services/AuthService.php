@@ -2,16 +2,17 @@
 
 namespace App\Http\Services;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Mail;
-
 use App\Mail\WelcomeEmail;
 use App\Mail\VerificationEmail;
-use App\Mail\ResetPasswordEmail;
 
+use App\Mail\ResetPasswordEmail;
+use App\Exceptions\ErrorException;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\UserFormRequest;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\ResetPasswordFormRequest;
-use App\Http\Requests\UserFormRequest;
 
 class AuthService extends BaseService {
 
@@ -29,7 +30,16 @@ class AuthService extends BaseService {
     public function verify(string $token) {
     }
 
-    public function login(LoginFormRequest $payload) {
+    public function login(LoginFormRequest $request) {
+        $credentials = $request->only('email', 'password');
+
+        $token = auth()->attempt($credentials);
+        if (!$token) throw new ErrorException('invalid login credentials');
+
+        $user = auth()->user();
+        if (!$user->is_active)  throw new ErrorException('Unverified Account!!', 405);
+
+        return ['user' => $user, 'access_token' => $token];
     }
 
     public function resendVerification(string $email) {

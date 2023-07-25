@@ -10,6 +10,7 @@ abstract class BaseRepository extends Repository {
     public abstract function model();
 
     /**
+     * THIS FUNCTION ACCEPTS QUERY FILTER BY DEFAULT
      * @return mixed
      */
     public function findAll() {
@@ -26,12 +27,11 @@ abstract class BaseRepository extends Repository {
     }
 
     /**
-     * @param array $columns
      * @param array $data
+     * @param array $query
      * @return mixed
      */
-
-    public function updateOne($data, $query) {
+    public function updateOne(array $data, array $query) {
         try {
             return tap($this->model::findWhere($query)->first())->update($data)->fresh();
         } catch (\Exception $ex) {
@@ -39,7 +39,12 @@ abstract class BaseRepository extends Repository {
         }
     }
 
-    public function updateById($data, $id) {
+    /**
+     * @param array $data
+     * @param string $id
+     * @return mixed
+     */
+    public function updateById(array $data, string $id) {
         try {
             return tap($this->model::where('id', $id)->first())->update($data)->fresh();
         } catch (\Exception $ex) {
@@ -47,7 +52,11 @@ abstract class BaseRepository extends Repository {
         }
     }
 
-    public function _delete($column, $value) {
-        return $this->model->where($column, '=', $value)->delete();
+    /**
+     * @param array $query
+     * @return mixed
+     */
+    public function deleteOne($query) {
+        return $this->model->findWhere($query)->delete();
     }
 }

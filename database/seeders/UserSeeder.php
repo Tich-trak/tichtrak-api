@@ -28,7 +28,7 @@ class UserSeeder extends Seeder {
 
         $superAdmin = new User();
         $superAdmin->name = 'Adebiyi Blessing';
-        $superAdmin->email = 'yoyoplenty@gmail.com.com';
+        $superAdmin->email = 'yoyoplenty@gmail.com';
         $superAdmin->password = 'Pearl4700';
         $superAdmin->role = RoleEnum::SuperAdmin;
         $superAdmin->is_active = true;

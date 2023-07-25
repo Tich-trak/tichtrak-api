@@ -9,11 +9,11 @@ use Exception;
 
 class InstitutionController extends BaseController {
 
-
     public function __construct(private InstitutionService $institutionService) {
-        // $this->middleware('auth');
+        $this->middleware('auth');
+        $this->middleware('role:RoleEnum::SuperAdmin', ['only' => ['store', 'destroy']]);
+        $this->middleware('role:RoleEnum::SuperAdmin,role:RoleEnum::Admin', ['except' => ['store', 'destroy']]);
     }
-
 
     /**
      * Display a listing of the resource.
