@@ -23,6 +23,15 @@ class BaseService {
         return $data;
     }
 
+    /**
+     * THIS FUNCTION ACCEPTS QUERY FILTER BY DEFAULT
+     * return mixed
+     */
+
+    public function find() {
+        return $this->repository->findAll();
+    }
+
     public function findAll($query = null) {
         $data = $query ? $this->repository->findWhere($query) : $this->repository->all();
         if (!$data) throw new ErrorException('unable to fetch ' . $this->name, 404);
@@ -37,7 +46,7 @@ class BaseService {
         return $data;
     }
 
-    public function findById(int $key) {
+    public function findById(string $key) {
         $data =  $this->repository->find($key);
         if (!$data) throw new ErrorException('unable to fetch ' . $this->name, 404);
 

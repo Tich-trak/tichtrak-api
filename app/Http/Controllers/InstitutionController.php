@@ -20,12 +20,10 @@ class InstitutionController extends BaseController {
      * Display a listing of the resource.
      */
     public function index() {
-        $institutions = $this->institutionService->paginate();
+        $data = $this->institutionService->find();
+        $institutions = InstitutionResource::collection($data);
 
-        return $this->jsonResponse(
-            InstitutionResource::collection($institutions),
-            'institution fetched successfully'
-        );
+        return $this->jsonResponse($institutions, 'institution fetched successfully');
     }
 
     /**
@@ -36,7 +34,7 @@ class InstitutionController extends BaseController {
             $payload = $request->validated();
             $institution = $this->institutionService->create($payload);
 
-            return $this->jsonResponse($institution, 'Successfully Created Institution');
+            return $this->jsonResponse($institution, 'institution created successfully');
         } catch (Exception $ex) {
             return $this->jsonError($ex->getMessage(), 500);
         }

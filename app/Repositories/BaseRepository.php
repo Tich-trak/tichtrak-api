@@ -10,6 +10,13 @@ abstract class BaseRepository extends Repository {
     public abstract function model();
 
     /**
+     * @return mixed
+     */
+    public function findAll() {
+        return $this->model->filter()->get();
+    }
+
+    /**
      * @param string $column
      * @param string $direction
      * @return mixed
