@@ -11,6 +11,13 @@ class Course extends Model {
     use HasUlids, HasFactory;
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = ['id'];
+
+    /**
      * Get the programme that owns the course.
      */
     public function programme(): BelongsTo {
