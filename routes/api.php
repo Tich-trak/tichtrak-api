@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\InstitutionAdminController;
 use App\Http\Controllers\InstitutionController;
 
 /*
@@ -17,7 +18,7 @@ use App\Http\Controllers\InstitutionController;
 
 Route::group(['prefix' => 'v1/',], function () {
 
-    /*====================    auth    =============================*/
+    /*====================    Auth    =============================*/
     Route::post('login', [AuthController::class, 'login']);
     Route::post('register', [AuthController::class, 'register']);
     Route::get('verify/{verification_token}', [AuthController::class, 'verify']);
@@ -31,6 +32,9 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Users   =============================*/
     Route::apiResource('users', UserController::class);
+
+    /*====================  Institution Admins   =============================*/
+    Route::apiResource('admins', InstitutionAdminController::class);
 
     /*====================  Payments   =============================*/
     Route::apiResource('payments', PaymentController::class);

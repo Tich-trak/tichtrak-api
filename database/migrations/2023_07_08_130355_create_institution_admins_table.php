@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->ulid('id');
             $table->foreignId('user_id');
             $table->foreignId('institution_id');
+            $table->foreignId('owner');
             $table->timestamps();
         });
     }
