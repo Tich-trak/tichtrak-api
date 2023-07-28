@@ -30,7 +30,7 @@ class InstitutionFormRequest extends FormRequest {
                         'name' => 'bail|required|string|max:200|min:3|unique:institutions,name',
                         'alias' => 'bail|sometimes|string|max:200|min:3|unique:institutions,alias',
                         'email' => 'required|string|email:rfc,dns|max:150|unique:institutions,email',
-                        'po_box' => 'bail|required|integer|max:6',
+                        'po_box' => 'bail|required|integer|max_digits:6',
                         'type' => ['bail', 'required', 'alpha', new Enum(InstitutionTypeEnum::class, false)],
                         'address' => 'bail|required|string',
                         'city' => 'bail|required|string',

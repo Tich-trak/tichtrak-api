@@ -3,10 +3,11 @@
 namespace App\Http\Services;
 
 use App\Exceptions\ErrorException;
+use App\Http\Traits\UtilityTraits;
 use App\Http\Traits\UserDetailsTrait;
 
 class BaseService {
-    use UserDetailsTrait;
+    use UtilityTraits, UserDetailsTrait;
 
     protected $repository;
     protected string $name;

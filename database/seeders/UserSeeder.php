@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
-use App\Enums\RoleEnum;
 use App\Models\User;
+use Ramsey\Uuid\Uuid;
+use App\Enums\RoleEnum;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,6 +17,7 @@ class UserSeeder extends Seeder {
         DB::table('users')->delete();
 
         $superAdmin = new User();
+        $superAdmin->uuid = Uuid::uuid4();
         $superAdmin->name = 'TichTrak';
         $superAdmin->email = 'tichtrak@mailinator.com';
         $superAdmin->password = 'Password123';
@@ -27,6 +29,7 @@ class UserSeeder extends Seeder {
         $superAdmin->save();
 
         $superAdmin = new User();
+        $superAdmin->uuid = Uuid::uuid4();
         $superAdmin->name = 'Adebiyi Blessing';
         $superAdmin->email = 'yoyoplenty@gmail.com';
         $superAdmin->password = 'Pearl4700';
