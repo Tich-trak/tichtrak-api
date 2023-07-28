@@ -35,16 +35,9 @@ trait UserDetailsTrait {
      *
      * @return array
      */
-    public function generateAdditionalDetails($payload, $userType, $role = null) {
+    public function generateAdditionalDetails($payload) {
         $payload['uuid'] = $this->generateIdentity();
         $payload['verification_token_generated_at'] = now();
-        $payload['password'] = data_get($payload, 'password') ?: env('DEFAULT_PASSWORD');
-
-        if ($role !== null) {
-            $payload['role'] = $role;
-        } else {
-            $payload['role'] = $userType == 1 ? 'individual' : 'company';
-        }
 
         return $payload;
     }

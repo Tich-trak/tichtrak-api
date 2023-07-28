@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('departments', function (Blueprint $table) {
-            $table->ulid('id');
-            $table->foreignId('institution_id');
+            $table->ulid('id')->primary();
+            $table->foreignUlid('institution_id');
             $table->string('name');
             $table->string('goal')->nullable();
             $table->boolean('is_active')->default(true);

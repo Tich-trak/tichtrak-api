@@ -10,11 +10,11 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('students', function (Blueprint $table) {
-            $table->ulid('id');
-            $table->foreignId('user_id');
-            $table->foreignId('institution_id');
-            $table->foreignId('faculty_id');
-            $table->foreignId('department_id');
+            $table->ulid('id')->primary();
+            $table->foreignUlid('user_id');
+            $table->foreignUlid('institution_id');
+            $table->foreignUlid('faculty_id');
+            $table->foreignUlid('department_id');
             $table->string('matric_no');
             $table->string('dob');
             $table->timestamps();

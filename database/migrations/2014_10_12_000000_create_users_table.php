@@ -10,7 +10,8 @@ return new class extends Migration {
      */
     public function up(): void {
         Schema::create('users', function (Blueprint $table) {
-            $table->ulid('id');
+            $table->ulid('id')->primary();
+            $table->uuid('uuid');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('role')->default('student');
@@ -21,7 +22,7 @@ return new class extends Migration {
             $table->string('city')->nullable();
             $table->foreignId('state_id')->nullable();
             $table->foreignId('country_id')->nullable();
-            $table->foreignId('institution_id')->nullable();
+            $table->foreignUlid('institution_id')->nullable();
             $table->timestamp('verified_at')->nullable();
             $table->dateTime('verification_token_generated_at')->nullable();
             $table->rememberToken();
