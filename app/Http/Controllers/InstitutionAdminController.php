@@ -18,8 +18,8 @@ class InstitutionAdminController extends BaseController {
      * Display a listing of the resource.
      */
     public function index() {
-        $data = $this->adminService->find();
-        $admins = InstitutionAdminResource::collection($data);
+        $data = $this->adminService->findAll();
+        $admins = InstitutionAdminResource::collection($data->loadMissing(['user', 'parent']));
 
         return $this->jsonResponse($admins, 'admin fetched successfully');
     }
@@ -42,13 +42,17 @@ class InstitutionAdminController extends BaseController {
      * Display the specified resource.
      */
     public function show(string $id) {
-        //
+        $admin = $this->adminService->findById($id);
+
+        return $this->jsonResponse($admin, 'admin fetched successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {
-        //
+        $this->adminService->deleteById($id);
+
+        return $this->jsonResponse(null, 'admin deleted successfully');
     }
 }
