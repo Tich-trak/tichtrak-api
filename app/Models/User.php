@@ -67,7 +67,6 @@ class User extends Authenticatable  implements JWTSubject {
         );
     }
 
-
     /**
      * Check if the user is a System Administrator
      */
