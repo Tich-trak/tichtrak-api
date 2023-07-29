@@ -33,11 +33,4 @@ class InstitutionAdmin extends Model {
     public function parent(): BelongsTo {
         return $this->belongsTo(User::class, 'owner');
     }
-
-    /**
-     * Get the institution that owns the admin.
-     */
-    public function institution(): BelongsTo {
-        return $this->belongsTo(Institution::class);
-    }
 }

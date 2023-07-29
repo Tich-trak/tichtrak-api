@@ -5,19 +5,6 @@ namespace App\Http\Traits;
 use App\Enums\RoleEnum;
 
 trait UserDetailsTrait {
-    protected function getUserDetailsRepository($userRole) {
-        switch ($userRole) {
-            case RoleEnum::Admin:
-                return $this->individual; //TODO change
-                break;
-            case RoleEnum::Student:
-                return $this->company; //TODO change
-                break;
-            default:
-                return $this->student;
-        };
-    }
-
     /**
      * Get Full User Details
      */

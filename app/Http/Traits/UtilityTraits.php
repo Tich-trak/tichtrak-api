@@ -14,10 +14,8 @@ trait UtilityTraits {
         $verifyGenerated = strtotime($createdAt);
         $verifyAt = strtotime('now - 24 hours');
 
-        if ($verifyAt <= $verifyGenerated) {
-            return true;
-        }
-        return false;
+        if ($verifyAt <= $verifyGenerated) return true;
+        else return false;
     }
 
     /**
