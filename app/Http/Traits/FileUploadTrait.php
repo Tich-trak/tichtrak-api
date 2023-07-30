@@ -4,7 +4,7 @@ namespace App\Http\Traits;
 
 use Illuminate\Support\Facades\Storage;
 
-trait FileUploadTraits {
+trait FileUploadTrait {
     /**
      * Upload Multiple File to AWS S3
      */
