@@ -19,9 +19,9 @@ trait FileUploadTraits {
                 $fileName  =  $directory . $this->generateCode() . '.' . $image->getClientOriginalExtension();
 
                 $path = Storage::disk('s3')->putFileAs('uploads/' . $directory, $image, $fileName);
-                //TODO confirm usage $path = Storage::disk('s3')->url($path);
+                $url = Storage::disk('s3')->url($path);
 
-                $imagesUrl[] = $path;
+                $imagesUrl[] = $url;
             }
         }
 
@@ -39,7 +39,9 @@ trait FileUploadTraits {
             $fileName  =  $directory . $this->generateCode() . '.' . $image->getClientOriginalExtension();
 
             $path = Storage::disk('s3')->putFileAs('uploads/' . $directory, $image, $fileName);
-            return $path;
+            $url = Storage::disk('s3')->url($path);
+
+            return $url;
         } else  return null;
     }
 }

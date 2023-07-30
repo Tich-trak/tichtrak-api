@@ -21,7 +21,7 @@ class Institution extends Model {
      */
     protected $guarded = ['id'];
 
-    protected $filters = ['id', 'type', 'email', 'is_active', 'state_id', 'country_id'];
+    protected $filters = ['id', 'type', 'alias', 'email', 'is_active', 'state_id', 'country_id'];
 
     /**
      * The attributes that should be cast.
@@ -39,16 +39,18 @@ class Institution extends Model {
         );
     }
 
-    protected function alias(): Attribute {
-        return Attribute::make(
-            set: fn (string $value) => strtoupper($value),
-        );
+    public function setAliasAttribute($value) {
+        $this->attributes['alias'] = strtolower($value);
+    }
+
+    public function getAliasAttribute($value) {
+        return strtoupper($value);
     }
 
     /**
      * Get the Admins for the institution.
      */
-    public function institutionAdmins(): HasMany {
+    public function admins(): HasMany {
         return $this->hasMany(InstitutionAdmin::class);
     }
 
