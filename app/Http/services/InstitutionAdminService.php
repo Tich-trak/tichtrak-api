@@ -15,11 +15,13 @@ class InstitutionAdminService extends BaseService {
         parent::__construct($admin, 'admin');
     }
 
-    public function createAdmin(array $request) {
+    public function create(array $request) {
         $password = $this->generateCode();
+        dump($password);
 
         $payload = $this->generateAdditionalDetails($request);
         $payload['password'] = $password;
+        $payload['is_active'] = 1;
         $payload['role'] = config('utils.roles.admin');
 
         $user =  DB::transaction(function () use ($payload) {

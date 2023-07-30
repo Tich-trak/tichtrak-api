@@ -21,7 +21,8 @@ class LoginFormRequest extends FormRequest {
     public function rules(): array {
         return [
             'email' => 'bail|required|exists:users,email|email:filter',
-            'password' => ['bail', 'required', 'max:127', Password::min(8)->letters()->mixedCase()->numbers()],
+            'password' => ['bail', 'required', 'max:127'],
+            // 'password' => ['bail', 'required', 'max:127', Password::min(8)->letters()->mixedCase()->numbers()],
         ];
     }
 }
