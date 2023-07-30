@@ -30,7 +30,7 @@ class InstitutionAdminController extends BaseController {
     public function store(UserFormRequest $request) {
         try {
             $payload = $request->validated();
-            $admin = $this->adminService->createAdmin($payload);
+            $admin = $this->adminService->create($payload);
 
             return $this->jsonResponse($admin, 'admin created successfully');
         } catch (Exception $ex) {
