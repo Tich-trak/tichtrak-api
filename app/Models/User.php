@@ -72,6 +72,7 @@ class User extends Authenticatable  implements JWTSubject {
      */
     public function isSystemAdmin(): bool {
         if ($this->role === RoleEnum::SuperAdmin) return true;
+
         else return false;
     }
 
@@ -80,6 +81,7 @@ class User extends Authenticatable  implements JWTSubject {
      */
     public function isAdmin(): bool {
         if ($this->role === RoleEnum::Admin) return true;
+
         else return false;
     }
 
@@ -88,20 +90,21 @@ class User extends Authenticatable  implements JWTSubject {
      */
     public function hasRole($role): bool {
         if ($this->role === $role) return true;
+
         else return false;
     }
 
     /**
      * Get the Details of an Institution Admin
      */
-    public function institutionAdmin(): HasOne {
+    public function admin(): HasOne {
         return $this->hasOne(InstitutionAdmin::class);
     }
 
     /**
      * Get the Admins created by this user
      */
-    public function childAdmin(): HasMany {
+    public function child(): HasMany {
         return $this->hasMany(InstitutionAdmin::class, 'owner');
     }
 
