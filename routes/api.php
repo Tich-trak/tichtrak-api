@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\InstitutionAdminController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +31,8 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::apiResource('institutions', InstitutionController::class);
 
     /*====================  Users   =============================*/
+    Route::post('users/admin', [UserController::class, 'storeAdmin']);
     Route::apiResource('users', UserController::class);
-
-    /*====================  Institution Admins   =============================*/
-    Route::apiResource('admins', InstitutionAdminController::class);
 
     /*====================  Payments   =============================*/
     Route::apiResource('payments', PaymentController::class);

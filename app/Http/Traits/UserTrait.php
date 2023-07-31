@@ -4,12 +4,29 @@ namespace App\Http\Traits;
 
 use App\Enums\RoleEnum;
 
-trait UserDetailsTrait {
+trait UserTrait {
+    /**
+     * Get User Type Repository
+     */
+    protected function getUserTypeRepo($userRole) {
+        switch ($userRole) {
+            case RoleEnum::Admin:
+                return $this->admin;
+                break;
+            case RoleEnum::Student:
+                return $this->student;
+                break;
+            default:
+                return $this->student;
+        };
+    }
+
     /**
      * Get Full User Details
      */
     protected function getUserDetails($user) {
-        $details = $user->role === RoleEnum::Student ? $user->student : $user->institutionAdmin;
+        $details = $user->role === RoleEnum::Student ?
+            $user->student : $user->admin;
 
         $user = $user->withoutRelations();
         $user['userDetails'] = $details;

@@ -6,7 +6,7 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
 
-trait UtilityTraits {
+trait UtilityTrait {
     /**
      * Verify Time Difference between dates
      */
