@@ -2,14 +2,8 @@
 
 namespace App\Http\Services;
 
-use App\Mail\WelcomeEmail;
-use App\Mail\VerificationEmail;
-
-use App\Mail\ResetPasswordEmail;
 use App\Exceptions\ErrorException;
-use Illuminate\Support\Facades\DB;
 
-use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\UserFormRequest;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\ResetPasswordFormRequest;
@@ -18,8 +12,6 @@ class AuthService extends BaseService {
 
     public function __construct(
         private UserService $userService,
-        private StudentService $studentService,
-        private InstitutionAdminService $adminService,
         private PasswordService $passwordService,
     ) {
     }
