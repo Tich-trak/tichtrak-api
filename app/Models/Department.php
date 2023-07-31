@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class Department extends Model {
-    use HasUlids, HasFactory;
+    use HasUlids, HasFactory, FilterQueryString;
 
     /**
      * The attributes that aren't mass assignable.

@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class Faculty extends Model {
-    use HasUlids, HasFactory;
+    use HasUlids, HasFactory, FilterQueryString;
 
     /**
      * The attributes that aren't mass assignable.
