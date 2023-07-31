@@ -10,8 +10,8 @@ use App\Http\Services\UserService;
 class UserController extends BaseController {
 
     public function __construct(private UserService $userService) {
-        $this->middleware('auth');
-        $this->middleware('role:RoleEnum::SuperAdmin,role:RoleEnum::Admin');
+        $this->middleware('auth', ['except' => ['store']]);
+        // $this->middleware('role:RoleEnum::SuperAdmin,role:RoleEnum::Admin');
     }
 
 

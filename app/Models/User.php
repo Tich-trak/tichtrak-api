@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Mehradsadeghi\FilterQueryString\FilterQueryString;
@@ -31,7 +32,7 @@ class User extends Authenticatable  implements JWTSubject {
      *
      * @var array
      */
-    protected $with = ['admin', 'student', 'child'];
+    protected $with = ['admin', 'student', 'child', 'institution'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -102,6 +103,13 @@ class User extends Authenticatable  implements JWTSubject {
         if ($this->role === $role) return true;
 
         else return false;
+    }
+
+    /**
+     * Get the Institution of the user
+     */
+    public function institution(): BelongsTo {
+        return $this->belongsTo(Institution::class);
     }
 
     /**
