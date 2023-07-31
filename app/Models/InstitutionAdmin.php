@@ -18,8 +18,6 @@ class InstitutionAdmin extends Model {
      */
     protected $guarded = ['id'];
 
-    protected $filters = ['id', 'user_id', 'institution_id', 'owner'];
-
     /**
      * Get the user that owns the institution admin.
      */

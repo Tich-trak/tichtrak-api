@@ -26,7 +26,7 @@ class UserService extends BaseService {
         $payload['is_active'] = 1;
         $payload['role'] = config('utils.roles.admin');
 
-        $admin =  DB::transaction(function () use ($payload) {
+        $user =  DB::transaction(function () use ($payload) {
             $user = $this->user->create($payload);
 
             $payload['user_id'] = $user->id;
@@ -34,11 +34,11 @@ class UserService extends BaseService {
 
             $this->admin->create($payload);
 
-            return $this->getUserDetails($user);
+            return $user;
         });
 
-        $token = $this->generateToken($admin->uuid);
-        $data = ['user' => $admin, 'verification_token' => $token];
+        $token = $this->generateToken($user->uuid);
+        $data = ['user' => $user, 'verification_token' => $token];
 
         //TODO send Email Mail::to($user)->send(new VerificationEmail($user, $token));
 
