@@ -2,10 +2,13 @@
 
 namespace App\Http\Services;
 
+use App\Mail\AdminCreated;
+use App\Mail\VerificationEmail;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserRepository as User;
 use App\Repositories\StudentRepository as Student;
 use App\Repositories\InstitutionAdminRepository as Admin;
+use Illuminate\Support\Facades\Mail;
 
 class UserService extends BaseService {
 
@@ -33,7 +36,7 @@ class UserService extends BaseService {
         $token = $this->generateToken($user->uuid);
         $data = ['user' => $user, 'verification_token' => $token];
 
-        //TODO send Email Mail::to($user)->send(new VerificationEmail($user, $token));
+        Mail::to($user)->send(new VerificationEmail($user, $token));
 
         return $data;
     }
@@ -60,7 +63,7 @@ class UserService extends BaseService {
         $token = $this->generateToken($user->uuid);
         $data = ['user' => $user, 'verification_token' => $token];
 
-        //TODO send Email Mail::to($user)->send(new VerificationEmail($user, $token));
+        Mail::to($user)->send(new AdminCreated($user, $token));
 
         return $data;
     }
