@@ -12,9 +12,10 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class User extends Authenticatable  implements JWTSubject {
-    use HasUlids, HasApiTokens, HasFactory, Notifiable;
+    use HasUlids, HasApiTokens, HasFactory, Notifiable, FilterQueryString;
 
     /**
      * The attributes that aren't mass assignable.
@@ -22,6 +23,15 @@ class User extends Authenticatable  implements JWTSubject {
      * @var array
      */
     protected $guarded = ['id'];
+
+    protected $filters = ['id', 'email', 'role', 'is_active', 'institution_id'];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['admin', 'student', 'child'];
 
     /**
      * The attributes that should be hidden for serialization.

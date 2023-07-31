@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserFormRequest;
-use App\Http\Services\UserService;
 use Exception;
+use App\Http\Requests\UserFormRequest;
+use App\Http\Resources\UserResource;
+use App\Http\Services\UserService;
 
 class UserController extends BaseController {
 
@@ -15,7 +16,10 @@ class UserController extends BaseController {
 
 
     public function index() {
-        //
+        $data = $this->userService->find();
+        $users = UserResource::collection($data);
+
+        return $this->jsonResponse($users, 'user fetched successfully');
     }
 
     /**
@@ -32,7 +36,6 @@ class UserController extends BaseController {
         }
     }
 
-
     /**
      * Store a newly created admin in storage.
      */
@@ -47,28 +50,52 @@ class UserController extends BaseController {
         }
     }
 
-
     /**
      * Display the specified resource.
      */
     public function show(string $id) {
-        $user = $this->userService->findById($id);
+        $data = $this->userService->findById($id);
+        $user = new UserResource($data);
 
         return $this->jsonResponse($user, 'user fetched successfully');
     }
 
-
     /**
      * Update the specified resource in storage.
      */
-    public function update() {
-        //
+    public function update(UserFormRequest $request, string $id) {
+        try {
+            $payload = $request->safe()->except('id');
+
+            $data = $this->userService->updateById($id, $payload);
+            $user = new UserResource($data);
+
+            return $this->jsonResponse($user, 'user updated successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
+     * Update th user Additional Details.
+     */
+    //TODO Implement update user details endpoint
+    public function updateDetails(UserFormRequest $request, string $id) {
+        try {
+            $payload = $request->safe()->except('id');
+
+            return $this->jsonResponse(null, 'user details updated successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() {
-        //
+    public function destroy(string $id) {
+        $this->userService->deleteById($id);
+
+        return $this->jsonResponse(null, 'user deleted successfully');
     }
 }
