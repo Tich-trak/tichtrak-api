@@ -55,6 +55,13 @@ class Institution extends Model {
     }
 
     /**
+     * Get the users for the institution.
+     */
+    public function users(): HasMany {
+        return $this->hasMany(User::class);
+    }
+
+    /**
      * Get the level for this institution.
      */
     public function levels(): HasMany {

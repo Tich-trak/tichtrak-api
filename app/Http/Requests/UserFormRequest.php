@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Foundation\Http\FormRequest;
 
 class UserFormRequest extends FormRequest {
     /**
@@ -28,6 +29,7 @@ class UserFormRequest extends FormRequest {
                     return [
                         'name' => 'bail|required|string|max:100|min:3',
                         'email' => 'required|string|email:rfc,dns|max:150|unique:users,email',
+                        'password' => [Rule::requiredIf(!auth()->user()), 'max:127', Password::min(8)->letters()->mixedCase()->numbers()],
                         'phone_number' => 'required',
                         'institution_id' => 'required|exists:institutions,id',
                         'address' => 'bail|required|string|max:255|min:3',

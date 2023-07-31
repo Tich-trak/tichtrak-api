@@ -22,7 +22,7 @@ class InstitutionController extends BaseController {
         $data = $this->institutionService->find();
         $institutions = InstitutionResource::collection($data);
 
-        return $this->jsonResponse($institutions, 'institution fetched successfully');
+        return $this->jsonResponse($institutions, 'institutions fetched successfully');
     }
 
     /**

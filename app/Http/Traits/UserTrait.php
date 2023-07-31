@@ -39,7 +39,7 @@ trait UserTrait {
      *
      * @return array
      */
-    public function generateAdditionalDetails($payload) {
+    public function generateDetails($payload) {
         $payload['uuid'] = $this->generateIdentity();
         $payload['verification_token_generated_at'] = now();
 
