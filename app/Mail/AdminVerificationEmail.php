@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
@@ -17,7 +16,7 @@ class AdminVerificationEmail extends Mailable {
      *
      * @return void
      */
-    public function __construct(public User $user, public $token) {
+    public function __construct(public array $data) {
     }
 
     /**
@@ -25,7 +24,7 @@ class AdminVerificationEmail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: $this->user->name . ' Activate your TichTrak Account',
+            subject: $this->data['user']->name . ' Activate your TichTrak Account',
         );
     }
 
