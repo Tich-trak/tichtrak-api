@@ -28,14 +28,14 @@ class UserFormRequest extends FormRequest {
             case 'POST': {
                     return [
                         'name' => 'bail|required|string|max:100|min:3',
-                        'email' => 'required|string|email:rfc,dns|max:150|unique:users,email',
+                        'email' => [Rule::requiredIf(!auth()->user()), 'bail', 'email:rfc', 'max:150', 'string', 'unique:users,email'],
                         'password' => [Rule::requiredIf(!auth()->user()), 'max:127', Password::min(8)->letters()->mixedCase()->numbers()],
                         'phone_number' => 'required',
                         'institution_id' => 'required|exists:institutions,id',
-                        'address' => 'bail|required|string|max:255|min:3',
-                        'city' => 'bail|required|string|max:255|min:3',
-                        'state_id' => 'bail|required|exists:states,id',
-                        'country_id' => 'bail|required|exists:countries,id',
+                        'address' => [Rule::requiredIf(!auth()->user()), 'bail', 'min:3', 'max:255', 'string'],
+                        'city' => [Rule::requiredIf(!auth()->user()), 'bail', 'min:3', 'max:50', 'string'],
+                        'state_id' => [Rule::requiredIf(!auth()->user()), 'bail', 'exists:states,id'],
+                        'country_id' => [Rule::requiredIf(!auth()->user()), 'bail', 'exists:countries,id'],
                     ];
                 }
             case 'PUT':
