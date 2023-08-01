@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\InstitutionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,9 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Institutions   =============================*/
     Route::apiResource('institutions', InstitutionController::class);
+
+    /*====================  Faculties   =============================*/
+    Route::apiResource('faculties', FacultyController::class);
 
     /*====================  Users   =============================*/
     Route::post('users/admin', [UserController::class, 'storeAdmin']);
