@@ -19,7 +19,6 @@ class VerificationEmail extends Mailable {
      */
 
     public function __construct(public User $user, public $token) {
-        //
     }
 
     /**
@@ -27,7 +26,7 @@ class VerificationEmail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: $this->user->name . ' Activate your Drive 45 Account',
+            subject: $this->user->name . ' Activate your TichTrak Account',
         );
     }
 

@@ -1,27 +1,29 @@
-@component("mail::message")
+<x-mail::message>
 
-# Hello {{$user->name}},
+# Hello {{$data['user']['name']}},
 
-Click on the Link Below to Activate your Drive45 Account,
+<x-mail::panel>
+We are Happy to have you onboard, Please Click on the Link Below to Activate your TichTrak Account,
+</x-mail::panel>
 
-@component('mail::button', ['url' => env('APP_URL') . '/api/v1/verify/' . $token])
+<x-mail::button :url="env('APP_URL') . '/api/v1/verify/' . $data['verification_token']" color="primary">
 Verify Email
-@endcomponent
+</x-mail::button>
 
 # Button Not Working?? Try pasting the link below into your Browser
 
-{{env('APP_URL') . '/api/v1/verify/' . $token}}
+{{env('APP_URL') . '/api/v1/verify/' . $data['verification_token']}}
 
 # Below is your Login Credentials
 
-Email: {{$user->email}},<br>
-password: {{ env('DEFAULT_PASSWORD') }}
+Email: {{$data['user']['email']}},<br>
+password: {{ $data['password'] }}
 
-@component('mail::subcopy')
-# Thanks you for chossing Drive45
-@endcomponent
+<x-mail::subcopy>
+Thanks you for chosing Tichtrak
+</x-mail::subcopy>
 
 Thanks,<br>
-{{ config('app.name') }}
+# {{ config('app.name') }}
 
-@endcomponent
+</x-mail::message>
