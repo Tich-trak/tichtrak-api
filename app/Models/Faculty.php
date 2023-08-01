@@ -19,6 +19,16 @@ class Faculty extends Model {
      */
     protected $guarded = ['id'];
 
+    protected $filters = ['id', 'institution_id', 'name', 'is_active'];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['institution'];
+
+
     /**
      * Get the institution that owns the faculty.
      */

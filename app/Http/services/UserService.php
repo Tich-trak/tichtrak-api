@@ -61,7 +61,7 @@ class UserService extends BaseService {
         });
 
         $token = $this->generateToken($user->uuid);
-        $data = ['user' => $user, 'verification_token' => $token, 'password' => $password];
+        $data = ['user' => $user, 'password' => $password, 'verification_token' => $token];
 
         Mail::to($user)->send(new AdminVerificationEmail($data));
 
