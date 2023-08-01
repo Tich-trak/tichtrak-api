@@ -18,7 +18,14 @@ class AuthController extends BaseController {
     public function register(UserFormRequest $request) {
     }
 
-    public function verify(string $verificationToken) {
+    public function verify(string $token) {
+        try {
+            $data = $this->authService->verify($token);
+
+            return $this->jsonResponse($data, 'user verified successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
     }
 
     public function resendVerification(string $email) {
