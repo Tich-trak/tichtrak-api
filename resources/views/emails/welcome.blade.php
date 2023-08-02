@@ -2,11 +2,9 @@
 
 # Welcome to Tichtrak - Empowering Education Excellence!
 
-<x-mail::panel>
-
 # Dear {{$user->name}},
 
-We are thrilled to extend a warm welcome to you as you embark on an exciting journey with [Your EdTech Platform Name]! As an innovative education evaluation platform,
+We are thrilled to extend a warm welcome to you as you embark on an exciting journey with TICHTRAK! As an innovative education evaluation platform,
 we are committed to empowering educational institutions like yours to unlock the full potential of your students and educators.
 
 At Tichtrak, we believe that every educational institution plays a vital role in shaping the future of our society.
@@ -21,8 +19,6 @@ What you can expect from Tichtrak:
 
 As you join our growing community of educational partners, we are excited about the possibilities that lie ahead. Together, we can shape a future where learning is enriched,
 potential is maximized, and success is attainable for every student.
-
-</x-mail::panel>
 
 <x-mail::subcopy>
 Thank you for choosing Tichtrak EdTech Platform to be a part of your educational journey.

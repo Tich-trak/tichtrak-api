@@ -21,7 +21,6 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================    Auth    =============================*/
     Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
     Route::get('verify/{verification_token}', [AuthController::class, 'verify']);
     Route::get('resend_verification/{email}', [AuthController::class, 'resendVerification']);
     Route::get('forgot_password/{email}', [AuthController::class, 'forgotPassword']);
@@ -38,8 +37,8 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::post('users/admin', [UserController::class, 'storeAdmin']);
     Route::apiResource('users', UserController::class);
 
-    /*====================  Payments   =============================*/
-    Route::apiResource('payments', PaymentController::class);
+    /*====================  Transactions   =============================*/
+    Route::apiResource('transactions', TransactionController::class);
 
     /*====================  Subscription   =============================*/
     Route::apiResource('subscriptions', SubscriptionController::class);
