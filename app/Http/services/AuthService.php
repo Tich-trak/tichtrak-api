@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\ResetPasswordFormRequest;
 use App\Mail\AdminVerificationEmail;
+use App\Mail\ResetPasswordEmail;
 use App\Mail\VerificationEmail;
 
 class AuthService extends BaseService {
@@ -76,6 +77,23 @@ class AuthService extends BaseService {
     }
 
     public function forgotPassword(string $email) {
+        $user = $this->userService->findOne(['email' => $email]);
+        if (!$user->is_active) throw new ErrorException('User not verified');
+
+        $passwordData =  DB::transaction(function () use ($user) {
+            $password_reset = $this->passwordService->upsert(['email' => $user->email], [
+                'token' => $this->generateIdentity(),
+                'created_at' => now()
+            ]);
+
+            $this->userService->updateById($user->id, ['password' => '']);
+            return $password_reset;
+        });
+
+        $data = ['user' => $passwordData->email, 'reset_token' => $passwordData->token];
+        Mail::to($user)->send(new ResetPasswordEmail($user, $passwordData->token));
+
+        return $data;
     }
 
     public function resetPassword(ResetPasswordFormRequest $payload) {

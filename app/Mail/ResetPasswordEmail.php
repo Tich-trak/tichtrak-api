@@ -19,7 +19,6 @@ class ResetPasswordEmail extends Mailable {
      */
 
     public function __construct(public User $user, public $token) {
-        //
     }
 
     /**
@@ -27,7 +26,7 @@ class ResetPasswordEmail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: 'Reset Your Password',
+            subject: $this->user->name . ' Reset Your Password',
         );
     }
 

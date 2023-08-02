@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Http\Services\AuthService;
-use App\Http\Requests\UserFormRequest;
 
 use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\ResetPasswordFormRequest;
@@ -46,6 +45,13 @@ class AuthController extends BaseController {
     }
 
     public function forgotPassword(string $email) {
+        try {
+            $data = $this->authService->forgotPassword($email);
+
+            return $this->jsonResponse($data, 'Forget password email sent successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
     }
 
     public function resetPassword(ResetPasswordFormRequest $request, string $resetToken) {
