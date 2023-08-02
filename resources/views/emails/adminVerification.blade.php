@@ -11,9 +11,7 @@ to the evaluation tools. Rest assured that your data privacy and security are of
 To verify your email address, please follow the simple steps below:
 
 1. Click on the link below to be redirected to the verification page.
-
 2. If the link is not clickable, please copy and paste it into your web browser's address bar.
-
 3. You will be directed to the verification page, where you will find a button labeled "Verify Email." Click on it to complete the process.
 
 Once your email is successfully verified, you will gain full access to our platform's powerful tools and features, enabling you

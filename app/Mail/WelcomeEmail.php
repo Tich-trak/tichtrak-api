@@ -27,7 +27,7 @@ class WelcomeEmail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: $this->user->name  . ' You are Welcome to Drive 45',
+            subject: $this->user->name  . ' Welcome to Tichtrak',
         );
     }
 

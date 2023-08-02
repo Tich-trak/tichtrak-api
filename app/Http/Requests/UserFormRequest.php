@@ -30,7 +30,7 @@ class UserFormRequest extends FormRequest {
                         'name' => 'bail|required|string|max:100|min:3',
                         'email' => [Rule::requiredIf(!auth()->user()), 'bail', 'email:rfc', 'max:150', 'string', 'unique:users,email'],
                         'password' => [Rule::requiredIf(!auth()->user()), 'max:127', Password::min(8)->letters()->mixedCase()->numbers()],
-                        'phone_number' => 'required',
+                        'phone_number' => 'required|string|max:15',
                         'institution_id' => 'required|exists:institutions,id',
                         'address' => [Rule::requiredIf(!auth()->user()), 'bail', 'min:3', 'max:255', 'string'],
                         'city' => [Rule::requiredIf(!auth()->user()), 'bail', 'min:3', 'max:50', 'string'],

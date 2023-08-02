@@ -15,27 +15,31 @@ class AuthController extends BaseController {
         $this->middleware('auth', ['only' => ['logout']]);
     }
 
-    public function register(UserFormRequest $request) {
-    }
-
     public function verify(string $token) {
         try {
             $data = $this->authService->verify($token);
 
-            return $this->jsonResponse($data, 'user verified successfully');
+            return $this->jsonResponse($data, 'User verified successfully');
         } catch (Exception $ex) {
             return $this->jsonError($ex->getMessage(), 500);
         }
     }
 
     public function resendVerification(string $email) {
+        try {
+            $data = $this->authService->resendVerification($email);
+
+            return $this->jsonResponse($data, 'Email resent successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
     }
 
     public function login(LoginFormRequest $request) {
         try {
             $data = $this->authService->login($request);
 
-            return $this->jsonResponse($data, 'user logged in successfully');
+            return $this->jsonResponse($data, 'User logged in successfully');
         } catch (Exception $ex) {
             return $this->jsonError($ex->getMessage(), 500);
         }
