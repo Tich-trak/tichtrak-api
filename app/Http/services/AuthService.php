@@ -96,10 +96,26 @@ class AuthService extends BaseService {
         return $data;
     }
 
-    public function resetPassword(ResetPasswordFormRequest $payload) {
+    public function resetPassword(ResetPasswordFormRequest $payload, string $token) {
+        $password = $this->passwordService->findOne(['token' => $token]);
+
+        $user = $this->userService->findOne(['email' => $password->email]);
+        if (!$this->verifyTimeDiff($password->created_at)) throw new ErrorException('Token expired');
+
+        $user =  DB::transaction(function () use ($user, $payload, $token) {
+            $user = $this->userService->updateById($user->id, ['password' => $payload->password]);
+
+            $this->passwordService->deleteOne(['token' => $token]);
+            return $user;
+        });
+
+        $token = auth()->login($user);
+        $data = ['user' => $user, 'access_token' => $token];
+
+        return $data;
     }
 
     public function logout() {
-        return null;
+        return auth()->logout();
     }
 }
