@@ -11,8 +11,8 @@ class InstitutionController extends BaseController {
 
     public function __construct(private InstitutionService $institutionService) {
         $this->middleware('auth');
-        $this->middleware('role:RoleEnum::SuperAdmin', ['only' => ['store', 'destroy']]);
-        $this->middleware('role:RoleEnum::SuperAdmin,role:RoleEnum::Admin', ['except' => ['store', 'destroy']]);
+        $this->middleware('role:SuperAdmin', ['only' => ['store', 'destroy']]);
+        $this->middleware('role:SuperAdmin,Admin', ['except' => ['store', 'destroy']]);
     }
 
     /**
