@@ -49,8 +49,8 @@ class UserService extends BaseService {
         $institution = $this->institution->findByField('id', $payload['institution_id'])->first();
 
         $payload['password'] = $password;
-        $payload['name'] = $institution->name;
-        $payload['email'] = $institution->email;
+        $payload['name'] = auth()->user()->isSystemAdmin() ?  $institution->name : $payload['name'];
+        $payload['email'] = auth()->user()->isSystemAdmin() ?  $institution->email : $payload['email'];
         $payload['role'] = config('utils.roles.admin');
 
         $user =  DB::transaction(function () use ($payload) {

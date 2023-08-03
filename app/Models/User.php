@@ -100,7 +100,7 @@ class User extends Authenticatable  implements JWTSubject {
      * Check if user role is the role value provided
      */
     public function hasRole($role): bool {
-        if ($this->role === $role) return true;
+        if ($this->role->name === $role) return true;
 
         else return false;
     }

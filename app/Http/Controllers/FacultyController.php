@@ -11,7 +11,7 @@ class FacultyController extends BaseController {
 
     public function __construct(private FacultyService $facultyService) {
         $this->middleware('auth');
-        $this->middleware('role:RoleEnum::SuperAdmin,role:RoleEnum::Admin');
+        $this->middleware('role:SuperAdmin,Admin');
     }
 
     /**
