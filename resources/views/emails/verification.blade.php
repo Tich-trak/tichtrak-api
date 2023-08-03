@@ -42,7 +42,6 @@ Thank you again for choosing TICHTRAK EdTech. Together, we will unlock the door 
 </x-mail::subcopy>
 
 Best regards,<br>
-C.E.O Tichtrak
-# {{ config('app.name') }}
+C.E.O {{ config('app.name') }}
 
 </x-mail::message>

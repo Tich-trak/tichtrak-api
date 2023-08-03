@@ -27,7 +27,7 @@ class UserFormRequest extends FormRequest {
                 }
             case 'POST': {
                     return [
-                        'name' => 'bail|required|string|max:100|min:3',
+                        'name' => [Rule::requiredIf(!auth()->user()), 'bail', 'string', 'max:100', 'min:3'],
                         'email' => [Rule::requiredIf(!auth()->user()), 'bail', 'email:rfc', 'max:150', 'string', 'unique:users,email'],
                         'password' => [Rule::requiredIf(!auth()->user()), 'max:127', Password::min(8)->letters()->mixedCase()->numbers()],
                         'phone_number' => 'required|string|max:15',

@@ -82,6 +82,9 @@ class BaseService {
     }
 
     public function deleteOne(array $query) {
-        return $this->repository->deleteOne($query);
+        $data = $this->repository->findWhere($query)->first();
+        if (!$data) throw new ErrorException('unable to fetch ' . $this->name, 404);
+
+        return $data->delete();
     }
 }

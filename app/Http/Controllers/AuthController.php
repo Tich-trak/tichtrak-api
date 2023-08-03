@@ -55,11 +55,18 @@ class AuthController extends BaseController {
     }
 
     public function resetPassword(ResetPasswordFormRequest $request, string $resetToken) {
+        try {
+            $data = $this->authService->resetPassword($request, $resetToken);
+
+            return $this->jsonResponse($data, 'Password reset successful');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
     }
 
     public function logout() {
-        auth()->logout();
+        $this->authService->logout();
 
-        return $this->jsonResponse(null, 'Successfully Logged Out');
+        return $this->jsonResponse(null, 'Successfully logged Out');
     }
 }

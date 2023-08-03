@@ -44,11 +44,12 @@ class UserService extends BaseService {
 
     public function createAdmin(array $request) {
         $payload = $this->generateDetails($request);
-        $password = $this->generateCode();
 
+        $password = $this->generateCode();
         $institution = $this->institution->findByField('id', $payload['institution_id'])->first();
 
         $payload['password'] = $password;
+        $payload['name'] = $institution->name;
         $payload['email'] = $institution->email;
         $payload['role'] = config('utils.roles.admin');
 
