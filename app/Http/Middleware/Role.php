@@ -17,9 +17,8 @@ class Role {
 
         if ($user->isSystemAdmin()) return $next($request);
 
-        foreach ($roles as $role) {
+        foreach ($roles as $role)
             if ($user->hasRole($role))  return $next($request);
-        }
 
         return response()->json(['error' => 'Unauthorized user', 'success' => false, 'statusCode' => 403], 403);
     }

@@ -23,7 +23,7 @@ class UserResource extends JsonResource {
             'city' => $this->whenNotNull($this->city),
             'institution' => $this->whenNotNull($this->institution),
             'details' => $this->whenNotNull($this->admin ?: $this->student),
-            $this->mergeWhen(count($this->child) > 0 && $request->user()->isSystemAdmin(), [
+            $this->mergeWhen(count($this->child) > 0 && $request->user()->isSystemAdmin() || $request->user()->isAdmin(), [
                 'child' => $this->child,
                 'total_child' => count($this->child),
             ]),
