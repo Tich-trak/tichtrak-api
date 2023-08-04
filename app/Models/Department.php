@@ -20,6 +20,15 @@ class Department extends Model {
      */
     protected $guarded = ['id'];
 
+    protected $filters = ['id', 'faculty_id', 'name', 'is_active'];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['faculty', 'programmes', 'courses'];
+
     /**
      * Get the faculty that owns the department.
      */

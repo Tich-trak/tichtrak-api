@@ -28,7 +28,6 @@ class Faculty extends Model {
      */
     protected $with = ['institution', 'departments'];
 
-
     /**
      * Get the institution that owns the faculty.
      */
