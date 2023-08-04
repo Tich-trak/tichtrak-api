@@ -26,7 +26,7 @@ class Faculty extends Model {
      *
      * @var array
      */
-    protected $with = ['institution'];
+    protected $with = ['institution', 'departments'];
 
 
     /**

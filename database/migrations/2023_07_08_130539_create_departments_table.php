@@ -11,9 +11,10 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('departments', function (Blueprint $table) {
             $table->ulid('id')->primary();
-            $table->foreignUlid('institution_id');
+            $table->foreignUlid('faculty_id')->constrained();
             $table->string('name');
             $table->string('goal')->nullable();
+            $table->string('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
