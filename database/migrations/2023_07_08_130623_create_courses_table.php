@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->foreignUlid('department_id');
             $table->string('name');
             $table->integer('code');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
