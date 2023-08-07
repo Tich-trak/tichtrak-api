@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->foreignUlid('department_id');
             $table->string('name');
             $table->string('goal')->nullable();
+            $table->string('description')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
