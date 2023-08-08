@@ -20,6 +20,14 @@ class Programme extends Model {
     protected $guarded = ['id'];
 
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['department', 'students',];
+
+
+    /**
      * Get the department that owns the programme.
      */
     public function department(): BelongsTo {
@@ -27,9 +35,9 @@ class Programme extends Model {
     }
 
     /**
-     * Get the courses for this programmes.
+     * Get the students of this programme;
      */
-    public function courses(): HasMany {
-        return $this->hasMany(Course::class);
+    public function students(): HasMany {
+        return $this->hasMany(Student::class);
     }
 }

@@ -26,7 +26,7 @@ class Faculty extends Model {
      *
      * @var array
      */
-    protected $with = ['institution', 'departments'];
+    protected $with = ['institution', 'departments', 'courses'];
 
     /**
      * Get the institution that owns the faculty.
@@ -40,5 +40,12 @@ class Faculty extends Model {
      */
     public function departments(): HasMany {
         return $this->hasMany(Department::class);
+    }
+
+    /**
+     * Get the courses taken by the faculty.
+     */
+    public function courses() {
+        return $this->belongsToMany(Course::class, 'course_faculty');
     }
 }
