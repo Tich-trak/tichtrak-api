@@ -9,12 +9,8 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
-        Schema::create('courses', function (Blueprint $table) {
-            $table->ulid('id')->primary();
-            $table->foreignUlid('level_id');
-            $table->string('name');
-            $table->integer('code');
-            $table->string('description')->nullable();
+        Schema::create('course_faculty', function (Blueprint $table) {
+            $table->id();
             $table->timestamps();
         });
     }
@@ -23,6 +19,6 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('course_faculty');
     }
 };

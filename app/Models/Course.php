@@ -18,17 +18,27 @@ class Course extends Model {
      */
     protected $guarded = ['id'];
 
-    /**
-     * Get the programme that owns the course.
-     */
-    public function programme(): BelongsTo {
-        return $this->belongsTo(Programme::class);
-    }
+    protected $filters = ['id', 'level'];
+
 
     /**
      * Get the level that owns the course.
      */
     public function level(): BelongsTo {
         return $this->belongsTo(Level::class);
+    }
+
+    /**
+     * Get All faculties that takes this course
+     */
+    public function faculties() {
+        return $this->belongsToMany(Faculty::class, 'course_faculty');
+    }
+
+    /**
+     * Get All Departments that take this course
+     */
+    public function departments() {
+        return $this->belongsToMany(Department::class, 'course_department');
     }
 }

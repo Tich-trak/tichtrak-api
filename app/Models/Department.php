@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class Department extends Model {
@@ -43,11 +42,10 @@ class Department extends Model {
         return $this->hasMany(Programme::class);
     }
 
-
     /**
-     * Get all of the courses for the department through the programmme.
+     * Get all of the courses for the department;
      */
-    public function courses(): HasManyThrough {
-        return $this->hasManyThrough(Course::class, Programme::class);
+    public function courses() {
+        return $this->belongsToMany(Course::class, 'course_department');
     }
 }
