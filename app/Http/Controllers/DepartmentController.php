@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\Department;
 use App\Http\Requests\DepartmentFormRequest;
 use App\Http\Resources\DepartmentResource;
 use App\Http\Services\DepartmentService;
