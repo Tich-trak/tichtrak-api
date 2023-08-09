@@ -16,7 +16,8 @@ class DepartmentService extends BaseService {
         $department =  DB::transaction(function () use ($request) {
             $department = $this->department->create($request);
 
-            if (array_key_exists('course_ids', $request))  $department->courses->attach($request['course_ids']);
+            if (array_key_exists('course_ids', $request))
+                $department->courses->attach($request['course_ids']);
 
             return $department;
         });
