@@ -30,6 +30,8 @@ class DepartmentFormRequest extends FormRequest {
                         'name' => ['required', 'string', Rule::unique('departments')->where('faculty_id', $this->faculty_id)],
                         'goal' => 'bail|sometimes|string|max:300|min:3|',
                         'description' => 'bail|sometimes|string|max:300|min:3|',
+                        // 'course_ids' => 'bail|sometimes|array',
+                        // 'course_ids.*' => 'string|exists:courses,id',
                     ];
                 }
             case 'PUT':
