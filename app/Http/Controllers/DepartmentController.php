@@ -45,6 +45,7 @@ class DepartmentController extends BaseController {
     public function show(string $id) {
         $department = $this->departmentService->findById($id);
 
+
         return $this->jsonResponse($department, 'department fetched successfully');
     }
 

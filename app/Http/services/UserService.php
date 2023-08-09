@@ -22,7 +22,7 @@ class UserService extends BaseService {
         parent::__construct($user, 'user');
     }
 
-    public function create(array $request) {
+    public function create(array $request): array {
         $payload = $this->generateDetails($request);
         $payload['role'] = config('utils.roles.student');
 
@@ -42,7 +42,7 @@ class UserService extends BaseService {
         return $data;
     }
 
-    public function createAdmin(array $request) {
+    public function createAdmin(array $request): array {
         $payload = $this->generateDetails($request);
 
         $password = $this->generateCode();
