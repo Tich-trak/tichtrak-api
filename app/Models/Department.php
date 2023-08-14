@@ -26,7 +26,7 @@ class Department extends Model {
      *
      * @var array
      */
-    protected $with = ['faculty', 'programmes', 'courses'];
+    // protected $with = ['faculty', 'programmes', 'courses'];
 
     /**
      * Get the faculty that owns the department.

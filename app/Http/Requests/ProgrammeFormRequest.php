@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProgrammeFormRequest extends FormRequest {
     /**
@@ -24,11 +25,22 @@ class ProgrammeFormRequest extends FormRequest {
                     return [];
                 }
             case 'POST': {
-                    return [];
+                    return [
+                        'department_id' => 'bail|required|exists:departments,id',
+                        'name' => ['required', 'string', Rule::unique('programmes')->where('department_id', $this->faculty_id)],
+                        'goal' => 'bail|sometimes|string|max:300|min:3|',
+                        'description' => 'bail|sometimes|string|max:300|min:3|',
+                    ];
                 }
             case 'PUT':
             case 'PATCH': {
-                    return [];
+                    return [
+                        'department_id' => 'bail|sometimes|exists:departments,id',
+                        'name' => ['sometimes', 'string', Rule::unique('programmes')->where('department_id', $this->faculty_id)],
+                        'goal' => 'bail|sometimes|string|max:300|min:3|',
+                        'description' => 'bail|sometimes|string|max:300|min:3|',
+                        'is_active' => 'bail|sometimes|boolean'
+                    ];
                 }
             default:
                 break;
