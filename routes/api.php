@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\ProgrammeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,9 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Departments   =============================*/
     Route::apiResource('departments', DepartmentController::class);
+
+    /*====================  Programmes   =============================*/
+    Route::apiResource('programmes', ProgrammeController::class);
 
     /*====================  Users   =============================*/
     Route::post('users/admin', [UserController::class, 'storeAdmin']);
