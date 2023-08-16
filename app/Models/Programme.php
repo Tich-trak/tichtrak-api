@@ -24,7 +24,7 @@ class Programme extends Model {
      *
      * @var array
      */
-    // protected $with = ['department', 'students'];
+    protected $with = ['department']; //TODO add student to this
 
 
     /**

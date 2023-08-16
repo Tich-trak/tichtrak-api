@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class LevelFormRequest extends FormRequest {
     /**
@@ -24,11 +25,18 @@ class LevelFormRequest extends FormRequest {
                     return [];
                 }
             case 'POST': {
-                    return [];
+                    return [
+                        'institution_id' => 'bail|required|exists:institutions,id',
+                        'name' => 'bail|required|string|max:300|min:3|',
+                        'code' => 'bail|sometimes|integer',
+                    ];
                 }
             case 'PUT':
             case 'PATCH': {
-                    return [];
+                    return [
+                        'name' => 'bail|sometimes|string|max:300|min:3|',
+                        'code' => 'bail|sometimes|integer',
+                    ];
                 }
             default:
                 break;

@@ -41,11 +41,4 @@ class Faculty extends Model {
     public function departments(): HasMany {
         return $this->hasMany(Department::class);
     }
-
-    /**
-     * Get the courses taken by the faculty.
-     */
-    public function courses() {
-        return $this->belongsToMany(Course::class, 'course_faculty');
-    }
 }

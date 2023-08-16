@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
             $table->foreignUlid('institution_id');
             $table->string('name');
-            $table->integer('code');
+            $table->integer('code')->nullable();
             $table->timestamps();
         });
     }

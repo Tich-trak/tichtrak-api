@@ -23,7 +23,7 @@ class Level extends Model {
      *
      * @var array
      */
-    protected $with = ['students',];
+    // protected $with = ['students',];
 
 
     /**
