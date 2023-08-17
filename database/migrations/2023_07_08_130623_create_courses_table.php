@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->ulid('id')->primary();
             $table->foreignUlid('level_id');
             $table->string('name');
+            $table->string('alias');
             $table->integer('code');
             $table->string('description')->nullable();
             $table->timestamps();

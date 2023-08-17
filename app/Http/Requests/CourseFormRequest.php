@@ -24,11 +24,21 @@ class CourseFormRequest extends FormRequest {
                     return [];
                 }
             case 'POST': {
-                    return [];
+                    return [
+                        'level_id' => 'bail|required|exists:levels,id',
+                        'name' => 'bail|required|string|max:300|min:3|',
+                        'alias' => 'bail|sometimes|string|max:3|min:3|',
+                        'code' => 'bail|required|integer|min_digits:3|max_digits:3',
+                        'description' => 'bail|sometimes|string|max:300|min:3|',
+                    ];
                 }
             case 'PUT':
             case 'PATCH': {
-                    return [];
+                    return [
+                        'name' => 'bail|sometimes|string|max:300|min:3|',
+                        'code' => 'bail|sometimes|integer|min_digits:100|max_digits:999',
+                        'description' => 'bail|sometimes|string|max:300|min:3|',
+                    ];
                 }
             default:
                 break;
