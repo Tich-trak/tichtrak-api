@@ -10,7 +10,7 @@ class LevelFormRequest extends FormRequest {
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool {
-        return false;
+        return true;
     }
 
     /**
@@ -27,8 +27,8 @@ class LevelFormRequest extends FormRequest {
             case 'POST': {
                     return [
                         'institution_id' => 'bail|required|exists:institutions,id',
-                        'name' => 'bail|required|string|max:300|min:3|',
-                        'code' => 'bail|sometimes|integer',
+                        'name' => ['required', 'string', Rule::unique('levels')->where('institution_id', $this->institution_id)],
+                        'code' => ['sometimes', 'integer', Rule::unique('levels')->where('institution_id', $this->institution_id)],
                     ];
                 }
             case 'PUT':

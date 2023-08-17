@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\InstitutionController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ProgrammeController;
 
 /*
@@ -40,6 +41,9 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Programmes   =============================*/
     Route::apiResource('programmes', ProgrammeController::class);
+
+    /*====================  Levels   =============================*/
+    Route::apiResource('levels', LevelController::class);
 
     /*====================  Users   =============================*/
     Route::post('users/admin', [UserController::class, 'storeAdmin']);
