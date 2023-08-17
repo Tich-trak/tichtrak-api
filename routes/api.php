@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\InstitutionController;
@@ -44,6 +45,9 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Levels   =============================*/
     Route::apiResource('levels', LevelController::class);
+
+    /*====================  Courses   =============================*/
+    Route::apiResource('courses', CourseController::class);
 
     /*====================  Users   =============================*/
     Route::post('users/admin', [UserController::class, 'storeAdmin']);
