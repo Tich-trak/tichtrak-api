@@ -74,7 +74,7 @@ class BaseService {
         return $this->repository->updateOrCreate($query, $payload);
     }
 
-    public function deleteById(int $key) {
+    public function deleteById(string $key) {
         $data = $this->repository->find($key);
         if (!$data) throw new ErrorException('cannot find ' . $this->name, 404);
 

@@ -62,6 +62,7 @@ class DepartmentController extends BaseController {
             return $this->jsonError($ex->getMessage(), 500);
         }
     }
+
     /**
      * Remove the specified resource from storage.
      */

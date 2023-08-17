@@ -20,19 +20,11 @@ class Course extends Model {
 
     protected $filters = ['id', 'level'];
 
-
     /**
      * Get the level that owns the course.
      */
     public function level(): BelongsTo {
         return $this->belongsTo(Level::class);
-    }
-
-    /**
-     * Get All faculties that takes this course
-     */
-    public function faculties() {
-        return $this->belongsToMany(Faculty::class, 'course_faculty');
     }
 
     /**
