@@ -38,6 +38,8 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::apiResource('faculties', FacultyController::class);
 
     /*====================  Departments   =============================*/
+    Route::patch('departments/{id}/courses/add', [DepartmentController::class, 'addCourses']);
+    Route::patch('departments/courses/remove', [DepartmentController::class, 'removeCourses']);
     Route::apiResource('departments', DepartmentController::class);
 
     /*====================  Programmes   =============================*/

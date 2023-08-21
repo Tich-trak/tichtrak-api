@@ -27,7 +27,7 @@ class CourseFormRequest extends FormRequest {
                     return [
                         'level_id' => 'bail|required|exists:levels,id',
                         'name' => 'bail|required|string|max:300|min:3|',
-                        'alias' => 'bail|sometimes|string|max:3|min:3|',
+                        'alias' => 'bail|required|string|max:3|min:3|',
                         'code' => 'bail|required|integer|min_digits:3|max_digits:3',
                         'description' => 'bail|sometimes|string|max:300|min:3|',
                     ];
