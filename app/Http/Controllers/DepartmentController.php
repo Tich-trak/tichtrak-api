@@ -64,6 +64,36 @@ class DepartmentController extends BaseController {
     }
 
     /**
+     * Add courses to departments.
+     */
+    public function addCourses(DepartmentFormRequest $request, string $id) {
+        try {
+            $payload = $request->safe()->only('course_ids');
+
+            $department = $this->departmentService->addCourses($id, $payload);
+
+            return $this->jsonResponse($department, 'departmental courses added successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
+     * Remove courses from departments.
+     */
+    public function removeCourses(DepartmentFormRequest $request, string $id) {
+        try {
+            $payload = $request->safe()->except('id');
+
+            $department = $this->departmentService->removeCourses($id, $payload);
+
+            return $this->jsonResponse($department, 'departmental courses added successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id) {

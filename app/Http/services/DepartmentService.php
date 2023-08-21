@@ -4,6 +4,7 @@ namespace App\Http\Services;
 
 use App\Models\Department;
 use App\Repositories\DepartmentRepository;
+use ErrorException;
 use Illuminate\Support\Facades\DB;
 
 class DepartmentService extends BaseService {
@@ -23,5 +24,39 @@ class DepartmentService extends BaseService {
         });
 
         return $department;
+    }
+
+    public function addCourses(string $id, $request): Department {
+        $department = $this->department->find($id);
+        if (!$department) throw new ErrorException('department not found');
+
+        $departmentCourses = $department->courses;
+        $courseIds = collect($request['course_ids']);
+
+        $courseIds = $courseIds->map(function ($courseId) use ($departmentCourses) {
+            if ($departmentCourses->contains($courseId))
+                throw new ErrorException('course already exist in department', 409);
+
+            return $courseId;
+        });
+
+        return $department->courses()->attach($courseIds);
+    }
+
+    public function removeCourses(string $id, object|array $request): Department {
+        $department = $this->department->find($id);
+        if (!$department) throw new ErrorException('department not found');
+
+        $departmentCourses = $department->courses;
+        $courseIds = collect($request->course_ids);
+
+        $courseIds = $courseIds->map(function ($courseId) use ($departmentCourses) {
+            if (!$departmentCourses->contains($courseId))
+                throw new ErrorException('course does not exist in department');
+
+            return $courseId;
+        });
+
+        return $departmentCourses->detach($courseIds);
     }
 }

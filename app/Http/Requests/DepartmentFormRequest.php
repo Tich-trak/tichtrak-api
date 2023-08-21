@@ -41,7 +41,9 @@ class DepartmentFormRequest extends FormRequest {
                         'name' => 'bail|sometimes|string|max:200|min:3|unique:departments,name',
                         'goal' => 'bail|sometimes|string|max:300|min:3|',
                         'description' => 'bail|sometimes|string|max:300|min:3|',
-                        'is_active' => 'bail|sometimes|boolean'
+                        'is_active' => 'bail|sometimes|boolean',
+                        'course_ids' => 'bail|sometimes|array',
+                        'course_ids.*' => 'string|exists:courses,id',
                     ];
                 }
             default:
