@@ -26,7 +26,7 @@ class DepartmentService extends BaseService {
         return $department;
     }
 
-    public function addCourses(string $id, $request): Department {
+    public function addCourses(string $id, array $request): Department {
         $department = $this->department->find($id);
         if (!$department) throw new ErrorException('department not found');
 
@@ -40,7 +40,8 @@ class DepartmentService extends BaseService {
             return $courseId;
         });
 
-        return $department->courses()->attach($courseIds);
+        $department->courses()->attach($courseIds);
+        return $department->fresh();
     }
 
     public function removeCourses(string $id, object|array $request): Department {
@@ -48,7 +49,7 @@ class DepartmentService extends BaseService {
         if (!$department) throw new ErrorException('department not found');
 
         $departmentCourses = $department->courses;
-        $courseIds = collect($request->course_ids);
+        $courseIds = collect($request['course_ids']);
 
         $courseIds = $courseIds->map(function ($courseId) use ($departmentCourses) {
             if (!$departmentCourses->contains($courseId))
@@ -57,6 +58,7 @@ class DepartmentService extends BaseService {
             return $courseId;
         });
 
-        return $departmentCourses->detach($courseIds);
+        $departmentCourses->detach($courseIds);
+        return $department->fresh();
     }
 }

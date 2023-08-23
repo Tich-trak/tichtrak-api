@@ -83,7 +83,7 @@ class DepartmentController extends BaseController {
      */
     public function removeCourses(DepartmentFormRequest $request, string $id) {
         try {
-            $payload = $request->safe()->except('id');
+            $payload = $request->safe()->only('course_ids');
 
             $department = $this->departmentService->removeCourses($id, $payload);
 

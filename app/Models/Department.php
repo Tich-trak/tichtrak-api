@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
 class Department extends Model {
@@ -26,7 +27,7 @@ class Department extends Model {
      *
      * @var array
      */
-    // protected $with = ['faculty', 'programmes', 'courses'];
+    protected $with = ['faculty'];
 
     /**
      * Get the faculty that owns the department.
@@ -46,6 +47,9 @@ class Department extends Model {
      * Get all of the courses for the department;
      */
     public function courses() {
-        return $this->belongsToMany(Course::class, 'course_department');
+        return $this->belongsToMany(Course::class, 'course_department')
+            ->using(new class extends Pivot {
+                use HasUlids;
+            });
     }
 }
