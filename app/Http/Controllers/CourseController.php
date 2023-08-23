@@ -23,6 +23,33 @@ class CourseController extends BaseController {
         return $this->jsonResponse($courses, 'courses fetched successfully');
     }
 
+
+    /**
+     * Get all courses of an institution.
+     */
+    public function institutionCourses(string $institution_id) {
+        try {
+            $courses = $this->courseService->findInstitutionCourses($institution_id);
+
+            return $this->jsonResponse($courses, 'courses fetched successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
+     * Get all courses of a department.
+     */
+    public function departmentCourses(string $department_id) {
+        try {
+            $courses = $this->courseService->findDepartmentCourses($department_id);
+
+            return $this->jsonResponse($courses, 'courses fetched successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
     /**
      * Store a newly created resource in storage.
      */

@@ -39,7 +39,7 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Departments   =============================*/
     Route::patch('departments/{id}/courses/add', [DepartmentController::class, 'addCourses']);
-    Route::patch('departments/courses/remove', [DepartmentController::class, 'removeCourses']);
+    Route::patch('departments/{id}/courses/remove', [DepartmentController::class, 'removeCourses']);
     Route::apiResource('departments', DepartmentController::class);
 
     /*====================  Programmes   =============================*/
@@ -49,6 +49,8 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::apiResource('levels', LevelController::class);
 
     /*====================  Courses   =============================*/
+    Route::get('courses/{institution_id}', [CourseController::class, 'institutionCourses']);
+    Route::get('courses/{department_id}', [CourseController::class, 'departmentCourses']);
     Route::apiResource('courses', CourseController::class);
 
     /*====================  Users   =============================*/

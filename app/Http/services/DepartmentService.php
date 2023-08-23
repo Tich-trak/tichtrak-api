@@ -58,7 +58,7 @@ class DepartmentService extends BaseService {
             return $courseId;
         });
 
-        $departmentCourses->detach($courseIds);
+        $department->courses()->detach($courseIds);
         return $department->fresh();
     }
 }

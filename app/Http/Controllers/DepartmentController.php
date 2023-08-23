@@ -87,7 +87,7 @@ class DepartmentController extends BaseController {
 
             $department = $this->departmentService->removeCourses($id, $payload);
 
-            return $this->jsonResponse($department, 'departmental courses added successfully');
+            return $this->jsonResponse($department, 'departmental courses removed successfully');
         } catch (Exception $ex) {
             return $this->jsonError($ex->getMessage(), 500);
         }
