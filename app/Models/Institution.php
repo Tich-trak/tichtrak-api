@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Mehradsadeghi\FilterQueryString\FilterQueryString;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Institution extends Model {
     use HasUlids, HasFactory, FilterQueryString;
@@ -73,12 +72,5 @@ class Institution extends Model {
      */
     public function faculties(): HasMany {
         return $this->hasMany(Faculty::class);
-    }
-
-    /**
-     * Get all of the departments for the institution through the faculty.
-     */
-    public function departments(): HasManyThrough {
-        return $this->hasManyThrough(Department::class, Faculty::class);
     }
 }
