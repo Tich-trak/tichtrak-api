@@ -49,8 +49,8 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::apiResource('levels', LevelController::class);
 
     /*====================  Courses   =============================*/
-    Route::get('courses/{institution_id}', [CourseController::class, 'institutionCourses']);
-    Route::get('courses/{department_id}', [CourseController::class, 'departmentCourses']);
+    Route::get('courses/institutions/{institution_id}', [CourseController::class, 'institutionCourses']);
+    Route::get('courses/departments/{department_id}', [CourseController::class, 'departmentCourses']);
     Route::apiResource('courses', CourseController::class);
 
     /*====================  Users   =============================*/

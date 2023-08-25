@@ -25,7 +25,7 @@ class Course extends Model {
      *
      * @var array
      */
-    protected $with = ['level']; //TODO add department later
+    protected $with = ['level'];
 
     /**
      * Get the level that owns the course.
