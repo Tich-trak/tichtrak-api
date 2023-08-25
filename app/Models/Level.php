@@ -26,13 +26,13 @@ class Level extends Model {
      *
      * @var array
      */
-    protected $with = ['institution']; //TODO Add student to it
+    protected $with = ['institution'];
 
     /**
-     * Get the institution that owns the faculty.
+     * Get the institution that the level belongs to.
      */
     public function institution(): BelongsTo {
-        return $this->belongsTo(Level::class);
+        return $this->belongsTo(Institution::class);
     }
 
     /**
