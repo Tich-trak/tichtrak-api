@@ -37,6 +37,20 @@ class CourseController extends BaseController {
         }
     }
 
+
+    /**
+     * Get all courses of an institution.
+     */
+    public function facultyCourses(string $faculty_id) {
+        try {
+            $courses = $this->courseService->findFacultyCourses($faculty_id);
+
+            return $this->jsonResponse($courses, 'courses fetched successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
     /**
      * Get all courses of a department.
      */

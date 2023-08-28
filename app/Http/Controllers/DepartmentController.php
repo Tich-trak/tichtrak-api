@@ -49,6 +49,19 @@ class DepartmentController extends BaseController {
     }
 
     /**
+     * Get all departments of an institution.
+     */
+    public function institutionDepartments(string $institution_id) {
+        try {
+            $departments = $this->departmentService->findInstitutionDepartments($institution_id);
+
+            return $this->jsonResponse($departments, 'departments fetched successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(DepartmentFormRequest $request, string $id) {

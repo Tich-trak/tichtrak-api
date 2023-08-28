@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\DB;
 
 class DepartmentService extends BaseService {
 
-    public function __construct(private DepartmentRepository $department) {
+    public function __construct(
+        private DepartmentRepository $department,
+        private InstitutionService $institutionService,
+        private FacultyService $facultyService,
+    ) {
         parent::__construct($department, 'department');
     }
 
@@ -44,7 +48,7 @@ class DepartmentService extends BaseService {
         return $department->fresh();
     }
 
-    public function removeCourses(string $id, object|array $request): Department {
+    public function removeCourses(string $id, array $request): Department {
         $department = $this->department->find($id);
         if (!$department) throw new ErrorException('department not found');
 
@@ -60,5 +64,15 @@ class DepartmentService extends BaseService {
 
         $department->courses()->detach($courseIds);
         return $department->fresh();
+    }
+
+    public function findInstitutionDepartments(string $institutionId): Department {
+        $this->institutionService->findById($institutionId);
+
+        $departments = $this->department->whereHas('faculty.institution', function ($query) use ($institutionId) {
+            $query->where('id', $institutionId);
+        })->get();
+
+        return $departments;
     }
 }
