@@ -18,7 +18,7 @@ class Course extends Model {
      */
     protected $guarded = ['id'];
 
-    protected $filters = ['id', 'level_id'];
+    protected $filters = ['id', 'level_id', 'department_id'];
 
     /**
      * The relationships that should always be loaded.
