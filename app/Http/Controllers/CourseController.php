@@ -23,7 +23,6 @@ class CourseController extends BaseController {
         return $this->jsonResponse($courses, 'courses fetched successfully');
     }
 
-
     /**
      * Get all courses of an institution.
      */
@@ -36,7 +35,6 @@ class CourseController extends BaseController {
             return $this->jsonError($ex->getMessage(), 500);
         }
     }
-
 
     /**
      * Get all courses of an institution.

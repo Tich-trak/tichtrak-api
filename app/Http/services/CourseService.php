@@ -3,6 +3,7 @@
 namespace App\Http\Services;
 
 use App\Repositories\CourseRepository;
+use Illuminate\Database\Eloquent\Collection;
 
 class CourseService extends BaseService {
 
@@ -15,7 +16,7 @@ class CourseService extends BaseService {
         parent::__construct($course, 'course');
     }
 
-    public function findInstitutionCourses(string $institutionId) {
+    public function findInstitutionCourses(string $institutionId): Collection {
         $this->institutionService->findById($institutionId);
 
         $courses = $this->course->whereHas('level.institution', function ($query) use ($institutionId) {
@@ -25,7 +26,7 @@ class CourseService extends BaseService {
         return $courses;
     }
 
-    public function findFacultyCourses(string $facultyId) {
+    public function findFacultyCourses(string $facultyId): Collection {
         $this->facultyService->findById($facultyId);
 
         $courses = $this->course->whereHas('level.institution.faculties', function ($query) use ($facultyId) {
@@ -35,7 +36,7 @@ class CourseService extends BaseService {
         return $courses;
     }
 
-    public function findDepartmentCourses(string $departmentId) {
+    public function findDepartmentCourses(string $departmentId): Collection {
         $this->departmentService->findById($departmentId);
 
         $courses = $this->course->whereHas('departments', function ($query) use ($departmentId) {
