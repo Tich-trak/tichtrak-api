@@ -19,6 +19,8 @@ class Programme extends Model {
      */
     protected $guarded = ['id'];
 
+    protected $filters = ['id', 'department_id', 'name', 'is_active'];
+
     /**
      * The relationships that should always be loaded.
      *

@@ -40,6 +40,32 @@ class ProgrammeController extends BaseController {
     }
 
     /**
+     * Get all programmes of an institution.
+     */
+    public function institutionProgrammes(string $institution_id) {
+        try {
+            $programmes = $this->programmeService->findInstitutionProgrammes($institution_id);
+
+            return $this->jsonResponse($programmes, 'programmes fetched successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
+     * Get all programmes of an institution.
+     */
+    public function facultyProgrammes(string $faculty_id) {
+        try {
+            $programmes = $this->programmeService->findFacultyProgrammes($faculty_id);
+
+            return $this->jsonResponse($programmes, 'programmes fetched successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id) {

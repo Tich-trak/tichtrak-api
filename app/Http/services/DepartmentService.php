@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Models\Department;
 use App\Repositories\DepartmentRepository;
 use ErrorException;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class DepartmentService extends BaseService {
@@ -66,7 +67,7 @@ class DepartmentService extends BaseService {
         return $department->fresh();
     }
 
-    public function findInstitutionDepartments(string $institutionId): Department {
+    public function findInstitutionDepartments(string $institutionId): Collection {
         $this->institutionService->findById($institutionId);
 
         $departments = $this->department->whereHas('faculty.institution', function ($query) use ($institutionId) {
