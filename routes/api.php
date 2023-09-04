@@ -55,6 +55,7 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::get('courses/institutions/{institution_id}', [CourseController::class, 'institutionCourses']);
     Route::get('courses/departments/{department_id}', [CourseController::class, 'departmentCourses']);
     Route::get('courses/faculties/{faculty_id}', [CourseController::class, 'facultyCourses']);
+    Route::post('courses/bulk-upload', [CourseController::class, 'bulkStore']);
     Route::apiResource('courses', CourseController::class);
 
     /*====================  Users   =============================*/

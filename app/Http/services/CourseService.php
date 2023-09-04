@@ -2,8 +2,13 @@
 
 namespace App\Http\Services;
 
+
+use ErrorException;
+use App\Imports\CourseImports;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Repositories\CourseRepository;
 use Illuminate\Database\Eloquent\Collection;
+use Symfony\Component\Uid\Ulid;
 
 class CourseService extends BaseService {
 
@@ -11,9 +16,29 @@ class CourseService extends BaseService {
         private CourseRepository $course,
         private InstitutionService $institutionService,
         private FacultyService $facultyService,
+        private LevelService $levelService,
         private DepartmentService $departmentService
     ) {
         parent::__construct($course, 'course');
+    }
+
+
+    public function bulkInsert(array $request) {
+        if (!$request['file']) throw new ErrorException('excel file cannot be empty');
+
+        $data = Excel::toArray(new CourseImports, $request['file'])[0];
+        $level = $this->levelService->findById($data[0]['level_id']);
+
+        $payload = collect($data);
+
+        $payload = $payload->map(function ($data) use ($level) {
+            $data['id'] = Ulid::generate();
+            $data['level_id'] = $level->id;
+
+            return $data;
+        });
+
+        return $this->course->bulkCreate($payload->toArray());
     }
 
     public function findInstitutionCourses(string $institutionId): Collection {
