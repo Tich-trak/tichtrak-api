@@ -10,6 +10,16 @@ abstract class BaseRepository extends Repository {
     public abstract function model();
 
     /**
+     * Bulk create records.
+     *
+     * @param array $data
+     * @return bool
+     */
+    public function bulkCreate(array $data) {
+        return $this->model->insert($data);
+    }
+
+    /**
      * THIS FUNCTION ACCEPTS QUERY FILTER BY DEFAULT
      * @return mixed
      */

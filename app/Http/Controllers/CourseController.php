@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Http\Requests\CourseFormRequest;
+use App\Http\Requests\ExcelFileUploadFormRequest;
 use App\Http\Resources\CourseResource;
 use App\Http\Services\CourseService;
-use Exception;
 
 class CourseController extends BaseController {
     public function __construct(private CourseService $courseService) {
@@ -77,6 +78,20 @@ class CourseController extends BaseController {
     }
 
     /**
+     * Store bulk courses using an excel file upload
+     */
+    public function bulkStore(ExcelFileUploadFormRequest $request) {
+        try {
+            $payload = $request->validated();
+            $course = $this->courseService->bulkInsert($payload);
+
+            return $this->jsonResponse($course, 'course created successfully');
+        } catch (Exception $ex) {
+            return $this->jsonError($ex->getMessage(), 500);
+        }
+    }
+
+    /**
      * Display the specified resource.
      */
     public function show(string $id) {
@@ -92,7 +107,6 @@ class CourseController extends BaseController {
     public function update(CourseFormRequest $request, string $id) {
         try {
             $payload = $request->safe()->except('id');
-
             $course = $this->courseService->updateById($id, $payload);
 
             return $this->jsonResponse($course, 'course updated successfully');
