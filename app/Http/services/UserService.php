@@ -2,8 +2,9 @@
 
 namespace App\Http\Services;
 
-use App\Mail\AdminVerificationEmail;
 use App\Mail\VerificationEmail;
+use App\Mail\AdminVerificationEmail;
+use App\Models\User as UserModel;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\UserRepository as User;
 use App\Repositories\StudentRepository as Student;
@@ -22,24 +23,11 @@ class UserService extends BaseService {
         parent::__construct($user, 'user');
     }
 
-    public function create(array $request): array {
+    public function create(array $request): UserModel {
         $payload = $this->generateDetails($request);
         $payload['role'] = config('utils.roles.student');
 
-        $user =  DB::transaction(function () use ($payload) {
-            $user = $this->user->create($payload);
-            $payload['user_id'] = $user->id;
-
-            $this->student->create($payload);
-            return $user;
-        });
-
-        $token = $this->generateToken($user->uuid);
-        $data = ['user' => $user, 'verification_token' => $token];
-
-        Mail::to($user)->send(new VerificationEmail($user, $token));
-
-        return $data;
+        return $this->user->create($payload);
     }
 
     public function createAdmin(array $request): array {
