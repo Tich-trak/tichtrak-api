@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Http\Requests\UserFormRequest;
-use App\Http\Resources\UserResource;
 use App\Http\Services\UserService;
+use App\Http\Resources\UserResource;
+use App\Http\Requests\UserFormRequest;
 
 class UserController extends BaseController {
 
@@ -14,7 +14,6 @@ class UserController extends BaseController {
         $this->middleware('role:Admin,SuperAdmin', ['only' => ['storeAdmin']]);
     }
 
-
     public function index() {
         $data = $this->userService->find();
         $users = UserResource::collection($data);
@@ -22,6 +21,7 @@ class UserController extends BaseController {
         return $this->jsonResponse($users, 'user fetched successfully');
     }
 
+    //! THIS MIGHT NOT BE NEEDED
     /**
      * Store a newly created resource in storage.
      */
