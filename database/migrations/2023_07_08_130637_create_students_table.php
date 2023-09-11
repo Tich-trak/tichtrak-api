@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->foreignUlid('programme_id');
             $table->foreignUlid('level_id');
             $table->string('matric_no');
-            $table->string('dob');
+            $table->date('dob')->nullable();
             $table->timestamps();
         });
     }

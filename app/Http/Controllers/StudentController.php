@@ -10,8 +10,7 @@ use App\Http\Services\StudentService;
 class StudentController extends BaseController {
 
     public function __construct(private StudentService $studentService) {
-        $this->middleware('auth', ['except' => ['signup']]);
-        $this->middleware('role:Admin,SuperAdmin', ['only' => ['store']]);
+        $this->middleware('auth', ['except' => ['register']]);
     }
 
     //* Filter with institution ID
@@ -22,10 +21,10 @@ class StudentController extends BaseController {
         return $this->jsonResponse($students, 'students fetched successfully');
     }
 
-    public function register(UserFormRequest $request, $subdomain) {
+    public function register(UserFormRequest $request, string $institutionUrl) {
         try {
             $payload = $request->validated();
-            $student = $this->studentService->register($payload, $subdomain);
+            $student = $this->studentService->register($payload, $institutionUrl);
 
             return $this->jsonResponse($student, 'student created successfully');
         } catch (Exception $ex) {
