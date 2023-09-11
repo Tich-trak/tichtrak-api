@@ -9,6 +9,7 @@ use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ProgrammeController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,9 +63,15 @@ Route::group(['prefix' => 'v1/',], function () {
     Route::post('users/admin', [UserController::class, 'storeAdmin']);
     Route::apiResource('users', UserController::class);
 
+    /*====================  Students   =============================*/
+    Route::apiResource('student', StudentController::class);
+
     /*====================  Transactions   =============================*/
     Route::apiResource('transactions', TransactionController::class);
 
     /*====================  Subscription   =============================*/
     Route::apiResource('subscriptions', SubscriptionController::class);
+
+    /*====================  Generic   =============================*/
+    Route::post('{institution_url}/signup', [StudentController::class, 'register']);
 });

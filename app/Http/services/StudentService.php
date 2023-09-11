@@ -17,8 +17,11 @@ class StudentService extends BaseService {
         parent::__construct($student, 'student');
     }
 
-    public function register(array $payload, string $subdomain): array {
-        $institution = $this->institutionService->findOne(['alias' => $subdomain]);
+    public function register(array $payload, string $institutionUrl): array {
+        $parsedUrl = parse_url($institutionUrl);
+        $alias = explode('.', $parsedUrl['path'])[0]; //* THIS WOULD CHANGE IN PRODUCTION
+
+        $institution = $this->institutionService->findOne(['alias' => $alias]);
         $payload['institution_id'] = $institution->id;
 
         $user =  DB::transaction(function () use ($payload) {
