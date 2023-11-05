@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->string('city')->nullable();
             $table->foreignId('state_id')->nullable();
             $table->foreignId('country_id')->nullable();
-            $table->foreignUlid('institution_id')->nullable();
+            $table->foreignUlid('institution_id');
             $table->timestamp('verified_at')->nullable();
             $table->dateTime('verification_token_generated_at')->nullable();
             $table->rememberToken();
