@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\InstitutionController;
 use App\Http\Controllers\LevelController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProgrammeController;
 use App\Http\Controllers\StudentController;
 
@@ -37,6 +38,9 @@ Route::group(['prefix' => 'v1/',], function () {
 
     /*====================  Faculties   =============================*/
     Route::apiResource('faculties', FacultyController::class);
+
+    /*====================  Notification   =============================*/
+    Route::apiResource('notifications', NotificationController::class);
 
     /*====================  Departments   =============================*/
     Route::patch('departments/{id}/courses/add', [DepartmentController::class, 'addCourses']);
